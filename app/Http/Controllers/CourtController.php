@@ -15,8 +15,7 @@ class CourtController extends Controller
      */
     public function index()
     {
-        $quarters = Quarter::all();
-        dd($quarters);
+       return view('backend.court.index');
     }
 
     /**

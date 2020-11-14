@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\booking;
 use Illuminate\Http\Request;
 
-class BookingController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +13,7 @@ class BookingController extends Controller
      */
     public function index()
     {
-        return view('backend.booking.index');
+        return view('backend.user.index');
     }
 
     /**
@@ -41,10 +40,10 @@ class BookingController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\booking  $booking
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(booking $booking)
+    public function show($id)
     {
         //
     }
@@ -52,10 +51,10 @@ class BookingController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\booking  $booking
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(booking $booking)
+    public function edit($id)
     {
         //
     }
@@ -64,10 +63,10 @@ class BookingController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\booking  $booking
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, booking $booking)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -75,11 +74,16 @@ class BookingController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\booking  $booking
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(booking $booking)
+    public function destroy($id)
     {
         //
+    }
+
+    public function owner ()
+    {
+        return view('backend.user.owner');
     }
 }

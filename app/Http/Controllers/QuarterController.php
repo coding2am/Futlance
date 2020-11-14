@@ -15,8 +15,7 @@ class QuarterController extends Controller
      */
     public function index()
     {
-        $cities = City::all();
-        dd($cities);
+        return view('backend.quarter.index');
     }
 
     /**
