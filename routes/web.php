@@ -13,3 +13,6 @@ Route::resource('booking','BookingController');
 Route::resource('court','CourtController');
 Route::resource('city','CityController');
 Route::resource('payment_method','PaymentMethodController');
+
+// Filter Route
+Route::post('filter', 'CourtController@filterCity')->name('filterCity');

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\City;
 use App\Court;
 use App\Quarter;
 use Illuminate\Http\Request;
@@ -15,7 +16,8 @@ class CourtController extends Controller
      */
     public function index()
     {
-       return view('backend.court.index');
+        $courts = Court::all();
+        return view('backend.court.index', compact('courts'));
     }
 
     /**
@@ -25,7 +27,9 @@ class CourtController extends Controller
      */
     public function create()
     {
-        //
+        $cities = City::all();
+        $quarters = Quarter::all();
+        return view('backend.court.create', compact('cities','quarters'));
     }
 
     /**
@@ -36,7 +40,38 @@ class CourtController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request);
+
+        // Validation
+        $request-> validate([
+            "name" => "required|min:5",
+            "photo" => "required|mimes:jpeg,bmp,png", // a.jpg
+            "price" => "required",
+            "quarter" => "required"
+        ]);
+
+        // If include file, upload
+        if($request->file()) {
+            $fileName = time().'_'.$request->photo->getClientOriginalName();
+
+            $filePath = $request->file('photo')->storeAs('court', $fileName, 'public');
+            // $path = public_path('my_assets/images/courts/'.$fileName);
+            // dd($path);
+            $path = '/storage/'.$filePath;
+            $user_id = 1;
+        }
+
+        // store
+        $court = new Court();
+        $court->user_id = $user_id;
+        $court->name = $request->name;
+        $court->photo = $path;
+        $court->price_per_hour = $request->price;
+        $court->quarter_id = $request->quarter;
+        $court->save();
+
+        // redirect
+        return redirect()->route('court.index');
     }
 
     /**
@@ -82,5 +117,13 @@ class CourtController extends Controller
     public function destroy(Court $court)
     {
         //
+    }
+
+    // Filter Function
+    public function filterCity(Request $request)
+    {
+        $cid = $request->cid;
+        $quarters = Quarter::where('city_id',$cid)->get();
+        return $quarters;
     }
 }

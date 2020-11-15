@@ -10,7 +10,7 @@
                 <div class="col">
                     <h3 class="page-title">City Form</h3>
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html">Cities</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('city.index') }}">Cities</a></li>
                         <li class="breadcrumb-item active">City Form</li>
                     </ul>
                 </div>

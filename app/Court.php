@@ -8,9 +8,11 @@ class Court extends Model
 {
     protected $fillable = [
         'name',
+        'photo',
+        'price_per_hour',
         'status',
         'city_id',
-        'user_id',
+        'user_id'
     ];
 
     public function user()

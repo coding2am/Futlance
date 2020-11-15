@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title')</title>
 
     <!-- Bootstrap CSS -->
@@ -221,9 +222,6 @@
     <script src="{{ asset('my_assets/backend/plugins/raphael/raphael.min.js') }}"></script>    
     <script src="{{ asset('my_assets/backend/plugins/morris/morris.min.js') }}"></script>  
     <script src="{{ asset('my_assets/backend/js/chart.morris.js') }}"></script>
-
-    <!-- Select2 JS -->
-    <script src="{{ asset('my_assets/backend/js/select2.min.js') }}"></script>
 		
     <!-- Custom JS -->
     <script  src="{{ asset('my_assets/backend/js/script.js') }}"></script>

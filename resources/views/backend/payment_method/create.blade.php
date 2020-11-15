@@ -10,7 +10,7 @@
                 <div class="col">
                     <h3 class="page-title">Payment Method Form</h3>
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html">Payment Methods</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('payment_method.index') }}">Payment Methods</a></li>
                         <li class="breadcrumb-item active">Payment Method Form</li>
                     </ul>
                 </div>

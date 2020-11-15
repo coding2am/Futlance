@@ -10,7 +10,7 @@
                 <div class="col">
                     <h3 class="page-title">Quarter Form</h3>
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html">Quarters</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('quarter.index') }}">Quarters</a></li>
                         <li class="breadcrumb-item active">Quarter Form</li>
                     </ul>
                 </div>

@@ -16,7 +16,7 @@ class CreateCourtsTable extends Migration
         Schema::create('courts', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->integer('status');
+            $table->integer('status')->default(0);
             $table->unsignedBigInteger('quarter_id');
             $table->unsignedBigInteger('user_id');
 
