@@ -15,7 +15,7 @@ class CityController extends Controller
     public function index()
     {
         $cities = City::all();
-        return view('backend.city.index');
+        return view('backend.city.index', compact('cities'));
     }
 
     /**
@@ -25,7 +25,7 @@ class CityController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.city.create');
     }
 
     /**
@@ -36,7 +36,20 @@ class CityController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request);
+
+        // Validation
+        $request-> validate([
+            "name" => "required|min:5",
+        ]);
+
+        // store
+        $city = new City;
+        $city->name = $request->name;
+        $city->save();
+
+        // redirect
+        return redirect()->route('city.index');
     }
 
     /**
@@ -58,7 +71,7 @@ class CityController extends Controller
      */
     public function edit(City $city)
     {
-        //
+        return view('backend.city.edit', compact('city'));
     }
 
     /**
@@ -70,7 +83,19 @@ class CityController extends Controller
      */
     public function update(Request $request, City $city)
     {
-        //
+        // dd($request);
+
+        // Validation
+        $request-> validate([
+            "name" => "required|min:5",
+        ]);
+
+        // store
+        $city->name = $request->name;
+        $city->save();
+
+        // redirect
+        return redirect()->route('city.index');
     }
 
     /**
@@ -81,6 +106,7 @@ class CityController extends Controller
      */
     public function destroy(City $city)
     {
-        //
+        $city->delete('city');
+        return redirect()->route('city.index');
     }
 }

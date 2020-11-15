@@ -16,9 +16,13 @@
     <link rel="stylesheet" href="{{ asset('my_assets/backend/css/feathericon.min.css') }}">
     
     <link rel="stylesheet" href="{{ asset('my_assets/backend/plugins/morris/morris.css') }}">
-		
+    
+    <!-- Select2 CSS -->
+    <link rel="stylesheet" href="{{ asset('my_assets/backend/css/select2.min.css') }}">
+
     <!-- Main CSS -->
     <link rel="stylesheet" href="{{ asset('my_assets/backend/css/style.css') }}">
+
 </head>
 <body>
 
@@ -217,6 +221,9 @@
     <script src="{{ asset('my_assets/backend/plugins/raphael/raphael.min.js') }}"></script>    
     <script src="{{ asset('my_assets/backend/plugins/morris/morris.min.js') }}"></script>  
     <script src="{{ asset('my_assets/backend/js/chart.morris.js') }}"></script>
+
+    <!-- Select2 JS -->
+    <script src="{{ asset('my_assets/backend/js/select2.min.js') }}"></script>
 		
     <!-- Custom JS -->
     <script  src="{{ asset('my_assets/backend/js/script.js') }}"></script>
