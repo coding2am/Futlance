@@ -1,0 +1,13 @@
+.statusTogglerOn {
+    color:green;
+    cursor: pointer;
+}
+.statusTogglerOff {
+    color:red;
+    cursor: pointer;
+}
+.submitIcon {
+    border: none!important;
+    background: none;
+    padding: 0px;
+}

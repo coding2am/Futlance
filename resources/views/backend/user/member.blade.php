@@ -1,5 +1,5 @@
 @extends('layouts.backend_template')
-@section('title', 'owners')
+@section('title', 'members')
 @section('content')
     <!-- Page Wrapper -->
     <div class="page-wrapper">
@@ -9,10 +9,10 @@
             <div class="page-header">
                 <div class="row">
                     <div class="col-sm-12">
-                        <h3 class="page-title">Owner</h3>
+                        <h3 class="page-title">Members</h3>
                         <ul class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-                            <li class="breadcrumb-item active">Owners</li>
+                            <li class="breadcrumb-item active">Members</li>
                         </ul>
                     </div>
                 </div>
@@ -38,27 +38,27 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($owners as $owner)
+                                        @foreach ($members as $member)
                                             <tr>
                                                 <td>{{ $num++ }}</td>
-                                                <td>{{ $owner->name }}</td>
+                                                <td>{{ $member->name }}</td>
                                                 <td>
-                                                    <span class="text-dark">{{ $owner->email }}</span>
+                                                    <span class="text-dark">{{ $member->email }}</span>
                                                 </td>
-                                                <td>{{ $owner->phone }}</td>
+                                                <td>{{ $member->phone }}</td>
                                                 <td>
                                                     <div class="btn-group btn-group-sm" role="group" aria-label="...">
-                                                        <a href="{{ route('user.show', $owner->id) }}"
+                                                        <a href="{{ route('user.show', $member->id) }}"
                                                             class="btn btn-primary">Detail</a>
-                                                        <a href="{{ route('user.role', $owner->id) }}"
+                                                        <a href="{{ route('user.role', $member->id) }}"
                                                             class="btn btn-info">Manage Role</a>
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    @if ($owner->status == 0)
+                                                    @if ($member->status == 0)
                                                         <div>
                                                             <form method="post"
-                                                                action="{{ route('user.off', $owner->id) }}">
+                                                                action="{{ route('user.off', $member->id) }}">
                                                                 @csrf
                                                                 <button type="submit" class="submitIcon">
                                                                     <i class="fas fa-toggle-on statusTogglerOn fa-2x"></i>
@@ -67,7 +67,8 @@
                                                         </div>
                                                     @else
                                                         <div>
-                                                            <form method="post" action="{{ route('user.on', $owner->id) }}">
+                                                            <form method="post"
+                                                                action="{{ route('user.on', $member->id) }}">
                                                                 @csrf
                                                                 <button type="submit" class="submitIcon">
                                                                     <i
