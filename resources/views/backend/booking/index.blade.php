@@ -27,7 +27,7 @@
                             <table class="datatable table table-hover table-center mb-0">
                                 <thead>
                                     <tr>
-                                        <th>Doctor Name</th>
+                                        <th>Booking No</th>
                                         <th>Speciality</th>
                                         <th>Patient Name</th>
                                         <th>Apointment Time</th>

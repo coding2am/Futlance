@@ -18,10 +18,18 @@
     <link rel="stylesheet" href="{{ asset('my_assets/backend/css/feathericon.min.css') }}">
 
     <link rel="stylesheet" href="{{ asset('my_assets/backend/plugins/morris/morris.css') }}">
+    <<<<<<< HEAD <!-- Main CSS -->
+        <link rel="stylesheet" href="{{ asset('my_assets/backend/css/style.css') }}">
+        <link rel="stylesheet" href="{{ asset('my_assets/backend/css/custom.css') }}">
+        =======
 
-    <!-- Main CSS -->
-    <link rel="stylesheet" href="{{ asset('my_assets/backend/css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('my_assets/backend/css/custom.css') }}">
+        <!-- Select2 CSS -->
+        <link rel="stylesheet" href="{{ asset('my_assets/backend/css/select2.min.css') }}">
+
+        <!-- Main CSS -->
+        <link rel="stylesheet" href="{{ asset('my_assets/backend/css/style.css') }}">
+
+        >>>>>>> f44e528bb2488e95522c5aa036d8a248a4f02349
 </head>
 
 <body>

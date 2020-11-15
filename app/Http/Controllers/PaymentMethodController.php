@@ -14,7 +14,8 @@ class PaymentMethodController extends Controller
      */
     public function index()
     {
-        return view('backend.payment_method.index');
+        $paymentMethods = PaymentMethod::all();
+        return view('backend.payment_method.index', compact('paymentMethods'));
     }
 
     /**
@@ -24,7 +25,7 @@ class PaymentMethodController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.payment_method.create');
     }
 
     /**
@@ -35,7 +36,20 @@ class PaymentMethodController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request);
+
+        // Validation
+        $request-> validate([
+            "name" => "required|min:5",
+        ]);
+
+        // store
+        $paymentMethod = new PaymentMethod();
+        $paymentMethod->name = $request->name;
+        $paymentMethod->save();
+
+        // redirect
+        return redirect()->route('payment_method.index');
     }
 
     /**
@@ -57,7 +71,7 @@ class PaymentMethodController extends Controller
      */
     public function edit(PaymentMethod $paymentMethod)
     {
-        //
+        return view('backend.payment_method.edit', compact('paymentMethod'));
     }
 
     /**
@@ -69,7 +83,19 @@ class PaymentMethodController extends Controller
      */
     public function update(Request $request, PaymentMethod $paymentMethod)
     {
-        //
+         // dd($request);
+
+        // Validation
+        $request-> validate([
+            "name" => "required|min:5",
+        ]);
+
+        // store
+        $paymentMethod->name = $request->name;
+        $paymentMethod->save();
+
+        // redirect
+        return redirect()->route('payment_method.index');
     }
 
     /**
@@ -80,6 +106,7 @@ class PaymentMethodController extends Controller
      */
     public function destroy(PaymentMethod $paymentMethod)
     {
-        //
+        $paymentMethod->delete('paymentMethod');
+        return redirect()->route('payment_method.index');
     }
 }
