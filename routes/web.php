@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 //Frontend Controllers
@@ -8,18 +9,6 @@ Route::get('/', 'FrontendController@index')->name('homepage');
 //Backend Controllers
 Route::get('/admin', 'BackendController@index')->name('dashboard');
 
-<<<<<<< HEAD
-Route::resource('user','UserController');
-Route::get('/owner','UserController@owner')->name('user.owner');
-Route::resource('quarter','QuarterController');
-Route::resource('booking','BookingController');
-Route::resource('court','CourtController');
-Route::resource('city','CityController');
-Route::resource('payment_method','PaymentMethodController');
-
-// Filter Route
-Route::post('filter', 'CourtController@filterCity')->name('filterCity');
-=======
 //User Controllers
 Route::resource('user', 'UserController');
 Route::get('/signin', 'UserController@login')->name('user.signin');
@@ -41,4 +30,6 @@ Route::resource('payment_method', 'PaymentMethodController');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
->>>>>>> e7e8ba678cbf2135a2e7aea0e0b12b4268046e2e
+
+// Filter Route
+Route::post('filter', 'CourtController@filterCity')->name('filterCity');
