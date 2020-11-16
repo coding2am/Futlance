@@ -58,12 +58,12 @@ class CourtController extends Controller
             // $path = public_path('my_assets/images/courts/'.$fileName);
             // dd($path);
             $path = '/storage/' . $filePath;
-            $user_id = 1;
+            // $user_id = 1;
         }
 
         // store
         $court = new Court();
-        $court->user_id = $user_id;
+        $court->user_id = $request->user_id;
         $court->name = $request->name;
         $court->photo = $path;
         $court->price_per_hour = $request->price;

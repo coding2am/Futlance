@@ -97,6 +97,8 @@
                                     </select>
                                 </div>
                             </div>
+                            {{-- owner user_id --}}
+                            <input name="user_id" type="hidden" value="{{ Auth::user()->id }}">
                             {{-- button --}}
                             <div class="form-group col-md-8 offset-md-2">
                                 <button type="submit" class="btn btn-block btn-dark">Create</button>

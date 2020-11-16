@@ -17,9 +17,6 @@
     <!-- Main CSS -->
     <link rel="stylesheet" href="{{ asset('my_assets/frontend/assets/css/style.css') }}">
 
-    <!-- Main CSS -->
-    <link rel="stylesheet" href="{{ asset('my_assets/frontend/assets/css/custom.css') }}">
-
 </head>
 
 <body class="account-page">
@@ -39,14 +36,16 @@
                         </span>
                     </a>
                     <a href="index-2.html" class="navbar-brand logo">
-                        <img src="{{ asset('my_assets/frontend/assets/img/logo.png') }}" class="img-fluid" alt="Logo">
+                        {{-- <img src="{{ asset('my_assets/frontend/assets/img/logo.png') }}" class="img-fluid" alt="Logo"> --}}
+                        <h1 class="logo-font">Futlance</h1>
                     </a>
                 </div>
                 <div class="main-menu-wrapper">
                     <div class="menu-header">
                         <a href="index-2.html" class="menu-logo">
-                            <img src="{{ asset('my_assets/frontend/assets/img/logo.png') }}" class="img-fluid"
-                                alt="Logo">
+                            {{-- <img src="{{ asset('my_assets/frontend/assets/img/logo.png') }}" class="img-fluid"
+                                alt="Logo"> --}}
+                                <h1 class="logo-font">Futlance</h1>
                         </a>
                         <a id="menu_close" class="menu-close" href="javascript:void(0);">
                             <i class="fas fa-times"></i>
@@ -54,108 +53,16 @@
                     </div>
                     <ul class="main-nav">
                         <li class="has-submenu">
-                            <a href="#">Home <i class="fas fa-chevron-down"></i></a>
-                            <ul class="submenu">
-                                <li><a href="index-2.html">Home</a></li>
-                                <li><a href="index-1.html">Home 1</a></li>
-                                <li><a href="index-3.html">Home 2</a></li>
-                                <li><a href="index-4.html">Home slider 1</a></li>
-                                <li><a href="index-slide.html">Home slider 2</a></li>
-                            </ul>
+                            <a href="{{ route('homepage') }}">Home</a>
                         </li>
                         <li class="has-submenu">
-                            <a href="#">Doctors <i class="fas fa-chevron-down"></i></a>
-                            <ul class="submenu">
-                                <li><a href="doctor-dashboard.html">Doctor Dashboard</a></li>
-                                <li><a href="appointments.html">Appointments</a></li>
-                                <li><a href="schedule-timings.html">Schedule Timing</a></li>
-                                <li><a href="my-patients.html">Patients List</a></li>
-                                <li><a href="patient-profile.html">Patients Profile</a></li>
-                                <li><a href="chat-doctor.html">Chat</a></li>
-                                <li><a href="invoices.html">Invoices</a></li>
-                                <li><a href="doctor-profile-settings.html">Profile Settings</a></li>
-                                <li><a href="reviews.html">Reviews</a></li>
-                                <li><a href="doctor-register.html">Doctor Register</a></li>
-                                <li class="has-submenu">
-                                    <a href="doctor-blog.html">Blog</a>
-                                    <ul class="submenu">
-                                        <li><a href="doctor-blog.html">Blog</a></li>
-                                        <li><a href="blog-details.html">Blog view</a></li>
-                                        <li><a href="doctor-add-blog.html">Add Blog</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
+                            <a href="{{ route('homepage') }}">About us</a>
                         </li>
                         <li class="has-submenu">
-                            <a href="#">Patients <i class="fas fa-chevron-down"></i></a>
-                            <ul class="submenu">
-                                <li class="has-submenu">
-                                    <a href="#">Doctors</a>
-                                    <ul class="submenu">
-                                        <li><a href="map-grid.html">Map Grid</a></li>
-                                        <li><a href="map-list.html">Map List</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="search.html">Search Doctor</a></li>
-                                <li><a href="doctor-profile.html">Doctor Profile</a></li>
-                                <li><a href="booking.html">Booking</a></li>
-                                <li><a href="checkout.html">Checkout</a></li>
-                                <li><a href="booking-success.html">Booking Success</a></li>
-                                <li><a href="patient-dashboard.html">Patient Dashboard</a></li>
-                                <li><a href="favourites.html">Favourites</a></li>
-                                <li><a href="chat.html">Chat</a></li>
-                                <li><a href="profile-settings.html">Profile Settings</a></li>
-                                <li><a href="change-password.html">Change Password</a></li>
-                            </ul>
+                            <a href="{{ route('homepage') }}">Contact</a>
                         </li>
                         <li class="has-submenu">
-                            <a href="#">Pharmacy <i class="fas fa-chevron-down"></i></a>
-                            <ul class="submenu">
-                                <li><a href="pharmacy-index.html">Pharmacy</a></li>
-                                <li><a href="pharmacy-details.html">Pharmacy Details</a></li>
-                                <li><a href="pharmacy-search.html">Pharmacy Search</a></li>
-                                <li><a href="product-all.html">Product</a></li>
-                                <li><a href="product-description.html">Product Description</a></li>
-                                <li><a href="cart.html">Cart</a></li>
-                                <li><a href="product-checkout.html">Product Checkout</a></li>
-                                <li><a href="payment-success.html">Payment Success</a></li>
-                            </ul>
-                        </li>
-                        <li class="has-submenu active">
-                            <a href="#">Pages <i class="fas fa-chevron-down"></i></a>
-                            <ul class="submenu">
-                                <li><a href="voice-call.html">Voice Call</a></li>
-                                <li><a href="video-call.html">Video Call</a></li>
-                                <li><a href="search.html">Search Doctors</a></li>
-                                <li><a href="calendar.html">Calendar</a></li>
-                                <li><a href="components.html">Components</a></li>
-                                <li class="has-submenu">
-                                    <a href="invoices.html">Invoices</a>
-                                    <ul class="submenu">
-                                        <li><a href="invoices.html">Invoices</a></li>
-                                        <li><a href="invoice-view.html">Invoice View</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="blank-page.html">Starter Page</a></li>
-                                <li class="active"><a href="login.html">Login</a></li>
-                                <li><a href="register.html">Register</a></li>
-                                <li><a href="forgot-password.html">Forgot Password</a></li>
-                            </ul>
-                        </li>
-                        <li class="has-submenu">
-                            <a href="#">Blog <i class="fas fa-chevron-down"></i></a>
-                            <ul class="submenu">
-                                <li><a href="blog-list.html">Blog List</a></li>
-                                <li><a href="blog-grid.html">Blog Grid</a></li>
-                                <li><a href="blog-details.html">Blog Details</a></li>
-                            </ul>
-                        </li>
-                        <li class="has-submenu">
-                            <a href="#" target="_blank">Admin <i class="fas fa-chevron-down"></i></a>
-                            <ul class="submenu">
-                                <li><a href="admin/index.html" target="_blank">Admin</a></li>
-                                <li><a href="pharmacy/index.html" target="_blank">Pharmacy Admin</a></li>
-                            </ul>
+                            <a href="{{ route('homepage') }}">Blog</a>
                         </li>
                         {{-- mobile btn --}}
                         <li class="login-link">
@@ -170,7 +77,7 @@
                         </div>
                         <div class="header-contact-detail">
                             <p class="contact-header">Contact</p>
-                            <p class="contact-info-header"> +1 315 369 5943</p>
+                            <p class="contact-info-header"> 09764821245</p>
                         </div>
                     </li>
                     {{-- web btn --}}
@@ -223,11 +130,12 @@
                             <!-- Footer Widget -->
                             <div class="footer-widget footer-about">
                                 <div class="footer-logo">
-                                    <img src="{{ asset('my_assets/frontend/assets/img/footer-logo.png') }}" alt="logo">
+                                    {{-- <img src="{{ asset('my_assets/frontend/assets/img/footer-logo.png') }}" alt="logo"> --}}
+                                    <h1 class="logo-font text-light">Futlance</h1>
                                 </div>
                                 <div class="footer-about-content">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                        incididunt ut labore et dolore magna aliqua. </p>
+                                    {{-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                        incididunt ut labore et dolore magna aliqua. </p> --}}
                                     <div class="social-icon">
                                         <ul>
                                             <li>
@@ -257,13 +165,13 @@
 
                             <!-- Footer Widget -->
                             <div class="footer-widget footer-menu">
-                                <h2 class="footer-title">For Patients</h2>
+                                <h2 class="footer-title">For Customers</h2>
                                 <ul>
-                                    <li><a href="search.html">Search for Doctors</a></li>
+                                    <li><a href="search.html">Search Courts</a></li>
                                     <li><a href="login.html">Login</a></li>
                                     <li><a href="register.html">Register</a></li>
                                     <li><a href="booking.html">Booking</a></li>
-                                    <li><a href="patient-dashboard.html">Patient Dashboard</a></li>
+                                    <li><a href="patient-dashboard.html">Customer Dashboard</a></li>
                                 </ul>
                             </div>
                             <!-- /Footer Widget -->
@@ -274,13 +182,12 @@
 
                             <!-- Footer Widget -->
                             <div class="footer-widget footer-menu">
-                                <h2 class="footer-title">For Doctors</h2>
+                                <h2 class="footer-title">For Owner</h2>
                                 <ul>
-                                    <li><a href="appointments.html">Appointments</a></li>
-                                    <li><a href="chat.html">Chat</a></li>
+                                    <li><a href="appointments.html">Booking</a></li>
                                     <li><a href="login.html">Login</a></li>
                                     <li><a href="doctor-register.html">Register</a></li>
-                                    <li><a href="doctor-dashboard.html">Doctor Dashboard</a></li>
+                                    <li><a href="doctor-dashboard.html">Owner Dashboard</a></li>
                                 </ul>
                             </div>
                             <!-- /Footer Widget -->
@@ -295,15 +202,15 @@
                                 <div class="footer-contact-info">
                                     <div class="footer-address">
                                         <span><i class="fas fa-map-marker-alt"></i></span>
-                                        <p> 3556 Beech Street, San Francisco,<br> California, CA 94108 </p>
+                                        <p> Pyinmana,<br> Nay Pyi Taw </p>
                                     </div>
                                     <p>
                                         <i class="fas fa-phone-alt"></i>
-                                        +1 315 369 5943
+                                        09764821245
                                     </p>
                                     <p class="mb-0">
                                         <i class="fas fa-envelope"></i>
-                                        doccure@example.com
+                                        info@futlance.com
                                     </p>
                                 </div>
                             </div>
@@ -325,7 +232,7 @@
                         <div class="row">
                             <div class="col-md-6 col-lg-6">
                                 <div class="copyright-text">
-                                    <p class="mb-0">&copy; 2020 Doccure. All rights reserved.</p>
+                                    <p class="mb-0">&copy; 2020 Futlance. All rights reserved.</p>
                                 </div>
                             </div>
                             <div class="col-md-6 col-lg-6">
@@ -363,6 +270,10 @@
 
     <!-- Slick JS -->
     <script src="{{ asset('my_assets/frontend/assets/js/slick.js') }}"></script>
+
+    <!-- Sticky Sidebar JS -->
+    <script src="{{ asset('my_assets/frontend/assets/plugins/theia-sticky-sidebar/ResizeSensor.js') }}"></script>
+    <script src="{{ asset('my_assets/frontend/assets/plugins/theia-sticky-sidebar/theia-sticky-sidebar.js') }}"></script>
 
     <!-- Custom JS -->
     <script src="{{ asset('my_assets/frontend/assets/js/script.js') }}"></script>

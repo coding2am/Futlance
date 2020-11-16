@@ -28,7 +28,7 @@
                     <div class="col-md-7 col-lg-8">
                         <div class="card">
                             <div class="card-body">
-                                <div class="booking-doc-info">
+                                {{-- <div class="booking-doc-info">
                                     <a href="doctor-profile.html" class="booking-doc-img">
                                         <div class="card table-border border-dark">
                                             <img class="" src="{{ asset($court->photo) }}"
@@ -49,7 +49,7 @@
                                         </div>
                                         <p class="text-muted mb-0"><i class="fas fa-map-marker-alt"></i>{{ $court->quarter->name }}</p>
                                     </div>
-                                </div>
+                                </div> --}}
                                     
                                 <!-- Checkout Form -->
 
@@ -199,7 +199,7 @@
                                             <i class="fas fa-star"></i>
                                         </div>
                                         <div class="clinic-details">
-                                            <p class="doc-location"><i class="fas fa-map-marker-alt"></i> {{ $court->quarter->name }}</p>
+                                            <p class="doc-location"><i class="fas fa-map-marker-alt"></i> {{ $court->quarter->name }}, {{ $court->quarter->city->name }}</p>
                                         </div>
                                     </div>
                                 </div>
