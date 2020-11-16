@@ -18,33 +18,47 @@
                 </div>
             </div>
             <!-- /Page Header -->
-            <div class="card table-border border-info">
-                <div class="card-title bg-info text-light p-3">
-                    <h4 class="text-center">{{ $user->name }}'s Role Management</h4>
-                </div>
-                <div class="card-body col-md-8 offset-md-2">
-                    <form method="post" action="{{ route('user.roleUpdate', $user->id) }}">
-                        @method('put')
-                        @csrf
-                        <div class="form-group">
-                            <label for="role">
-                                <h5>Role</h5>
-                            </label>
-                            <select name="role" id="role" class="form-control">
-                                @foreach ($roles as $role)
-                                    <option value="{{ $role->id }}" @if ($role->id == $user->roles[0]->id)
-                                        selected="selected"
-                                @endif
-                                >{{ $role->name }}</option>
-                                @endforeach
-                            </select>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card offset-md-2 col-md-8 table-border border-dark rounded p-2">
+                        <div>
+                            <h2 class="text text-center text-muted my-3">User Role Management</h2>
                         </div>
-                        <div class="form-group">
-                            <input type="submit" class="btn btn-info" value="Update Role">
+                        <div class="card-body">
+                            {{-- flash back message start--}}
+                            @if (!empty(session()->get('success')))
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    <strong class="mr-1">Success!</strong>{!! session()->get('success') !!}
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            @endif
+                            {{-- flash back message end--}}
+                            <form method="post" action="{{ route('user.roleUpdate', $user->id) }}">
+                                @csrf
+                                @method('put')
+                                <div class="row no-gutters">
+                                    <div class="form-group col-md-6">
+                                        <select name="role" id="role" class="form-control">
+                                            @foreach ($roles as $role)
+                                                <option value="{{ $role->id }}" @if ($role->id == $user->roles[0]->id)
+                                                    selected="selected"
+                                            @endif
+                                            >{{ $role->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <button type="submit" class="btn btn-block btn-dark">Update</button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
-                    </form>
+                    </div>
                 </div>
             </div>
+            
         </div>
         <!-- /Page Wrapper -->
     @endsection

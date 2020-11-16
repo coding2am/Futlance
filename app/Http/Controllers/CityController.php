@@ -39,8 +39,8 @@ class CityController extends Controller
         // dd($request);
 
         // Validation
-        $request-> validate([
-            "name" => "required|min:5",
+        $request->validate([
+            "name" => "required|min:2",
         ]);
 
         // store
@@ -49,7 +49,7 @@ class CityController extends Controller
         $city->save();
 
         // redirect
-        return redirect()->route('city.index');
+        return redirect()->route('city.index')->with('success', 'Created a new city successfully!');
     }
 
     /**
@@ -86,8 +86,8 @@ class CityController extends Controller
         // dd($request);
 
         // Validation
-        $request-> validate([
-            "name" => "required|min:5",
+        $request->validate([
+            "name" => "required|min:2",
         ]);
 
         // store
@@ -95,7 +95,7 @@ class CityController extends Controller
         $city->save();
 
         // redirect
-        return redirect()->route('city.index');
+        return redirect()->route('city.index')->with('success', 'Your changes has been saved!');
     }
 
     /**
@@ -106,7 +106,7 @@ class CityController extends Controller
      */
     public function destroy(City $city)
     {
-        $city->delete('city');
-        return redirect()->route('city.index');
+        $city->delete();
+        return redirect()->route('city.index')->with('success', 'City has been Deleted!');
     }
 }
