@@ -198,6 +198,7 @@
                                             <li>Date <span class="summaryDate"></span></li>
                                             <li>Time <span class="summaryTime"></span></li>
                                             <li>Section(s) <span class="summarySection"></span></li>
+                                            <li>Pre-Paid(%) <span> 35 %</span></li>
                                         </ul>
                                         <ul class="booking-fee">
                                             <input class="price" type="hidden" value="{{ $court->price_per_hour }}">
@@ -208,6 +209,10 @@
                                                 <li>
                                                     <span>Total</span>
                                                     <span class="total-cost summaryTotal"></span>
+                                                </li>
+                                                <li>
+                                                    <span>Pre-Paid Amount</span>
+                                                    <span class="total-cost summaryPrePaid"></span>
                                                 </li>
                                             </ul>
                                         </div>
@@ -372,9 +377,13 @@
             // console.log(section);
             let price_per_hour = parseInt($('.price').val());
             // alert(summaryFee);
-
             var summaryTotal = section * price_per_hour;
             $('.summaryTotal').html(summaryTotal + ' MMK');
+
+            // prepaid
+            let pre_paid = summaryTotal * 0.3;
+            $('.summaryPrePaid').html(pre_paid + ' MMK');
+            
 
             $('#section').val(section);
             $('#total').val(summaryTotal);
