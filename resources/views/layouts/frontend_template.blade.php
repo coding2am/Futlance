@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title')</title>
 
     <!-- Bootstrap CSS -->
@@ -355,6 +356,9 @@
     <!-- Bootstrap Core JS -->
     <script src="{{ asset('my_assets/frontend/assets/js/popper.min.js') }}"></script>
     <script src="{{ asset('my_assets/frontend/assets/js/bootstrap.min.js') }}"></script>
+
+    <!-- Slick JS -->
+    <script src="{{ asset('my_assets/frontend/assets/js/slick.js') }}"></script>
 
     <!-- Custom JS -->
     <script src="{{ asset('my_assets/frontend/assets/js/script.js') }}"></script>

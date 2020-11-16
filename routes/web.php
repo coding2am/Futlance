@@ -31,5 +31,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-// Filter Route
+// Filter Routes
 Route::post('filter', 'CourtController@filterCity')->name('filterCity');
+Route::post('filterq', 'FrontendController@filterQuarter')->name('filterQuarter');
