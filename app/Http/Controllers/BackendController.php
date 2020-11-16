@@ -10,4 +10,8 @@ class BackendController extends Controller
     {
         return view('backend.index');
     }
+    public function owner ()
+    {
+        return view('backend.index');
+    }
 }
