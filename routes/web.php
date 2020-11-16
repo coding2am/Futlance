@@ -23,7 +23,8 @@ Route::post('/off/{id}', 'UserController@off')->name('user.off');
 
 //Booking Controller route
 Route::resource('booking', 'BookingController');
-Route::get('court_booking', 'BookingController@courtBooking')->name('court_booking');
+Route::post('storeBooking', 'BookingController@storeBooking')->name('storeBooking');
+Route::get('court_booking/{id}', 'BookingController@courtBooking')->name('court_booking');
 Route::get('checkout', 'BookingController@checkout')->name('checkout');
 
 Route::resource('quarter', 'QuarterController');

@@ -16,6 +16,10 @@
 
     <!-- Main CSS -->
     <link rel="stylesheet" href="{{ asset('my_assets/frontend/assets/css/style.css') }}">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="{{ asset('my_assets/frontend/assets/css/custom.css') }}">
+
 </head>
 
 <body class="account-page">

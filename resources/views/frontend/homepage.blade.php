@@ -1,6 +1,13 @@
 @extends('layouts.frontend_template')
 @section('title', 'Home Page')
 @section('content')
+<style>
+    .courtImage {
+        width: 400px!important;
+        height: 200px!important;
+        object-fit: cover;
+    }
+</style>
 <!-- Home Banner -->
 <section class="section section-search">
     <div class="container-fluid">
@@ -65,7 +72,7 @@
                     <div class="profile-widget">
                         <div class="doc-img">
                             <a href="doctor-profile.html">
-                                <img class="img-fluid" alt="User Image" src="{{ asset($court->photo) }}">
+                                <img class="img-fluid courtImage" alt="User Image" src="{{ asset($court->photo) }}">
                             </a>
                             <a href="javascript:void(0)" class="fav-btn">
                                 <i class="far fa-bookmark"></i>
@@ -102,7 +109,7 @@
                                     <a href="doctor-profile.html" class="btn view-btn">View Profile</a>
                                 </div> --}}
                                 <div class="col-12">
-                                    <a href="booking.html" class="btn book-btn">Book Now</a>
+                                    <a href="{{ route('court_booking', $court->id) }}" class="btn book-btn">Book Now</a>
                                 </div>
                             </div>
                         </div>
