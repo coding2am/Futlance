@@ -27,31 +27,16 @@
                 <div class="row">
                     <div class="col-md-7 col-lg-8">
                         <div class="card">
-                            <div class="card-body">
-                                {{-- <div class="booking-doc-info">
-                                    <a href="doctor-profile.html" class="booking-doc-img">
-                                        <div class="card table-border border-dark">
-                                            <img class="" src="{{ asset($court->photo) }}"
-                                            alt="User Image">
-                                        </div>
-                                        
-                                    </a>
-                                    <div class="booking-info">
-                                        <input id="court_id" name="court_id" type="hidden" value="{{ $court->id }}">
-                                        <input id="user_id" name="user_id" type="hidden" value="{{ Auth::user()->id }}">
-                                        <h4><a href="doctor-profile.html">{{ $court->name }}</a></h4>
-                                        <div class="rating">
-                                            <i class="fas fa-star filled"></i>
-                                            <i class="fas fa-star filled"></i>
-                                            <i class="fas fa-star filled"></i>
-                                            <i class="fas fa-star filled"></i>
-                                            <i class="fas fa-star"></i>
-                                        </div>
-                                        <p class="text-muted mb-0"><i class="fas fa-map-marker-alt"></i>{{ $court->quarter->name }}</p>
-                                    </div>
-                                </div> --}}
-                                    
+                            <div class="card-body">                                                           
                                 <!-- Checkout Form -->
+                                <form action="{{route('storeBooking')}}" method="post">
+                                    @csrf  
+                                    <!-- hidden values -->
+                                    <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
+                                    <input type="hidden" name="court_id" value="{{$court->id}}">
+                                    <input type="hidden" id="section" name="section" value="">
+                                    <input type="hidden" id="total" name="total" value="">
+                                    <!-- /hidden values -->
 
                                     <!-- Booking Information -->
                                     <div class="info-widget">
@@ -100,7 +85,7 @@
                                         </div>
                                     </div>
                                     <!-- /Booking Information -->
-                                        
+
                                     <!-- Personal Information -->
                                     <div class="info-widget">
                                         <h4 class="card-title">Personal Information</h4>
@@ -126,6 +111,7 @@
                                         </div>
                                     </div>
                                     <!-- /Personal Information -->
+
                                     <!-- Payment Methods -->       
                                     <div class="payment-widget">
                                         <h4 class="card-title">Payment Method</h4>
@@ -140,9 +126,10 @@
                                         @endforeach
                                         <!-- /Payment Methods -->
                                     </div>
-                                        <!-- Note -->
-                                        <hr>
-                                        <div class="info-widget mt-3">
+
+                                    <!-- Note -->
+                                    <hr>
+                                    <div class="info-widget mt-3">
                                         <h4 class="card-title">Additional</h4>
                                         <div class="row">
                                             <div class="col-md-12 col-sm-12">
@@ -151,10 +138,7 @@
                                                     <input id="note" name="note" type="text" class="form-control">
                                                 </div>
                                             </div>
-                                        </div>
-                                           
-                                        </div>
-                                        <!-- Note -->
+                                        </div>   
                                         <!-- Terms Accept -->
                                         <div class="terms-accept">
                                             <div class="custom-checkbox">
@@ -162,15 +146,18 @@
                                             <label for="terms_accept">I have read and accept <a href="#">Terms &amp; Conditions</a></label>
                                             </div>
                                         </div>
-                                        <!-- /Terms Accept -->
-                                                
-                                        <!-- Submit Section -->
-                                        <div class="submit-section mt-4">
-                                            <input type="submit" value="Confirm and Pay" class="btn btn-primary submit-btn bookingStore">
-                                        </div>
-                                        <!-- /Submit Section -->
-                                <!-- /Checkout Form -->
-                                        
+                                        <!-- /Terms Accept -->                                       
+                                    </div>
+                                    <!-- Note -->
+                                    
+
+                                    <!-- Submit Button -->
+                                    <div>
+                                        <input type="submit" class="btn submit-btn btn-success" value="Confirm and Pay">
+                                    </div>
+                                    <!-- /Submit Button -->
+                                </form>           
+                                <!-- /Checkout Form -->       
                             </div>
                         </div>
                     </div>
@@ -224,6 +211,16 @@
                                                 </li>
                                             </ul>
                                         </div>
+                                        {{-- flash back message start--}}
+                                        @if (!empty(session()->get('success')))
+                                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                                <strong class="mr-1">Success!</strong>{!! session()->get('success') !!}
+                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                        @endif
+                                        {{-- flash back message end--}}
                                     </div>
                                 </div>
                             </div>
@@ -379,45 +376,10 @@
             var summaryTotal = section * price_per_hour;
             $('.summaryTotal').html(summaryTotal + ' MMK');
 
-
-
-           
+            $('#section').val(section);
+            $('#total').val(summaryTotal);
 
         })
-
-        // Store Booking
-        $('.bookingStore').submit(function(e){
-            // alert('Ok');
-            let court_id = $('#court_id').val();
-            let user_id = $('#user_id').val();
-            let date = $('#date').val();
-            let from = $('#from').val();
-            let to = $('#to').val();
-            let paymentMethod = $('#paymentMethod').val();
-            let note = $('#note').val();
-
-            $.post("{{ route('storeBooking') }}",{
-                court_id:court_id,
-                user_id:user_id,
-                date:date,
-                from:from,
-                to:to,
-                paymentMethod:paymentMethod,
-                note:note,
-                section:section,
-                summaryTotal:summaryTotal
-            
-            },function (response) {
-                // alert(response.msg);
-                // localStorage.clear();
-                // location.href="/";
-            })
-            e.preventDefault();
-        })  
-        // /Store Booking
-
-
-
     })            
 
 </script>

@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class booking extends Model
+class Booking extends Model
 {
     protected $fillable = [
         'booking_no',
@@ -18,4 +18,17 @@ class booking extends Model
         'court_id',
         'payment_method_id',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
+    public function court()
+    {
+        return $this->belongsTo('App\Court');
+    }
+    public function paymentMethod()
+    {
+        return $this->belongsTo('App\PaymentMethod');
+    }
 }

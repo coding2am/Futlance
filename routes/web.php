@@ -8,6 +8,7 @@ Route::get('/', 'FrontendController@index')->name('homepage');
 
 //Backend Controllers
 Route::get('/admin', 'BackendController@index')->name('dashboard');
+Route::get('/owner_dashboard', 'BackendController@owner')->name('owner_dashboard');
 
 //User Controllers
 Route::resource('user', 'UserController');

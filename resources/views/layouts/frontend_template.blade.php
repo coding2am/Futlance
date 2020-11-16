@@ -35,14 +35,14 @@
                             <span></span>
                         </span>
                     </a>
-                    <a href="index-2.html" class="navbar-brand logo">
+                    <a href="{{ route('homepage') }}" class="navbar-brand logo">
                         {{-- <img src="{{ asset('my_assets/frontend/assets/img/logo.png') }}" class="img-fluid" alt="Logo"> --}}
                         <h1 class="logo-font">Futlance</h1>
                     </a>
                 </div>
                 <div class="main-menu-wrapper">
                     <div class="menu-header">
-                        <a href="index-2.html" class="menu-logo">
+                        <a href="{{ route('homepage') }}" class="menu-logo">
                             {{-- <img src="{{ asset('my_assets/frontend/assets/img/logo.png') }}" class="img-fluid"
                                 alt="Logo"> --}}
                                 <h1 class="logo-font">Futlance</h1>

@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\booking;
+use App\Booking;
 use App\Court;
 use App\PaymentMethod;
 use Illuminate\Http\Request;
 use Symfony\Component\VarDumper\Cloner\Data;
+use Illuminate\Support\Facades\DB;
 
 class BookingController extends Controller
 {
@@ -17,7 +18,8 @@ class BookingController extends Controller
      */
     public function index()
     {
-        return view('backend.booking.index');
+        $bookings = Booking::all();
+        return view('backend.booking.index',compact('bookings'));
     }
 
     /**
@@ -170,17 +172,26 @@ class BookingController extends Controller
 
     public function storeBooking(Request $request)
     {
+        $count = $request->section;
+
+        $bookingno = 'BOK-'.time();
         $booking = new Booking();
+        $booking->booking_no = $bookingno;
+        $booking->booking_date = $request->date;
+        $booking->start_time = $request->start_time;
+        $booking->end_time = $request->end_time;
+        $booking->note = $request->note;
         $booking->user_id = $request->user_id;
         $booking->court_id = $request->court_id;
-        $booking->booking_no = '120044';
-        $booking->booking_date = $request->date;
-        $booking->start_time = $request->from;
-        $booking->end_time = $request->to;
         $booking->payment_method_id = $request->paymentMethod;
-        $booking->note = $request->note;
 
         $booking->save();
-        return "Success";
+
+        DB::table('court_user')->insert([
+            'user_id'=>$request->user_id,
+            'court_id'=>$request->court_id,
+            'count'=>$count,
+        ]);
+        return redirect()->route('court_booking',$request->court_id)->with('success','Your Booking has been send. Please wait for the confirmation.');
     }
 }
