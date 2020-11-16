@@ -16,6 +16,10 @@
 
     <!-- Main CSS -->
     <link rel="stylesheet" href="{{ asset('my_assets/frontend/assets/css/style.css') }}">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="{{ asset('my_assets/frontend/assets/css/custom.css') }}">
+
 </head>
 
 <body class="account-page">
@@ -356,6 +360,9 @@
     <!-- Bootstrap Core JS -->
     <script src="{{ asset('my_assets/frontend/assets/js/popper.min.js') }}"></script>
     <script src="{{ asset('my_assets/frontend/assets/js/bootstrap.min.js') }}"></script>
+
+    <!-- Slick JS -->
+    <script src="{{ asset('my_assets/frontend/assets/js/slick.js') }}"></script>
 
     <!-- Custom JS -->
     <script src="{{ asset('my_assets/frontend/assets/js/script.js') }}"></script>

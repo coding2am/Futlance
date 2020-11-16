@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\booking;
+use App\Court;
+use App\PaymentMethod;
 use Illuminate\Http\Request;
 use Symfony\Component\VarDumper\Cloner\Data;
 
@@ -36,7 +38,8 @@ class BookingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request);
+        
     }
 
     /**
@@ -84,9 +87,11 @@ class BookingController extends Controller
         //
     }
 
-    public function courtBooking()
+    public function courtBooking($id)
     {
-        return view('frontend.booking.index');
+        $court = Court::find($id);
+        $paymentMethods = PaymentMethod::all();
+        return view('frontend.booking.index', compact('court','paymentMethods'));
     }
 
     public function checkout()
@@ -161,5 +166,21 @@ class BookingController extends Controller
             $message = "";
         }
         return $message;
+    }
+
+    public function storeBooking(Request $request)
+    {
+        $booking = new Booking();
+        $booking->user_id = $request->user_id;
+        $booking->court_id = $request->court_id;
+        $booking->booking_no = '120044';
+        $booking->booking_date = $request->date;
+        $booking->start_time = $request->from;
+        $booking->end_time = $request->to;
+        $booking->payment_method_id = $request->paymentMethod;
+        $booking->note = $request->note;
+
+        $booking->save();
+        return "Success";
     }
 }
