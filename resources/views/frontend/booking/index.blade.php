@@ -49,128 +49,137 @@
                                         </div>
                                         <p class="text-muted mb-0"><i class="fas fa-map-marker-alt"></i>{{ $court->quarter->name }}</p>
                                     </div>
-                                </div>
-                                    
-                                <!-- Checkout Form -->
+                                </div>                           
+                                    <!-- Checkout Form -->
+                                    <form action="{{route('storeBooking')}}" method="post">
+                                        @csrf  
+                                        <!-- hidden values -->
+                                        <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
+                                        <input type="hidden" name="court_id" value="{{$court->id}}">
+                                        <input type="hidden" id="section" name="section" value="">
+                                        <input type="hidden" id="total" name="total" value="">
+                                        <!-- /hidden values -->
 
-                                    <!-- Booking Information -->
-                                    <div class="info-widget">
-                                        <h4 class="card-title">Booking Information</h4>
-                                        <div class="row">
-                                            <div class="col-md-12 col-sm-12">
-                                                <div class="form-group card-label">
-                                                    <label>Date</label>
-                                                    <input id="date" name="date" type="date" class="form-control date">
+                                        <!-- Booking Information -->
+                                        <div class="info-widget">
+                                            <h4 class="card-title">Booking Information</h4>
+                                            <div class="row">
+                                                <div class="col-md-12 col-sm-12">
+                                                    <div class="form-group card-label">
+                                                        <label>Date</label>
+                                                        <input id="date" name="date" type="date" class="form-control date">
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            {{-- taken section message--}}
-                                            <div class="col-md-12">
-                                                <div class="returnMsg">
-                                                    <span class="text-muted"></span>
+                                                {{-- taken section message--}}
+                                                <div class="col-md-12">
+                                                    <div class="returnMsg">
+                                                        <span class="text-muted"></span>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            {{-- taken section message--}}
+                                                {{-- taken section message--}}
 
-                                            {{-- date error message start--}}
-                                            <div class="col-md-12">
-                                                <div class="returnError">
-                                                    <span class="text-muted"></span>
+                                                {{-- date error message start--}}
+                                                <div class="col-md-12">
+                                                    <div class="returnError">
+                                                        <span class="text-muted"></span>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            {{-- date error message end--}}
-                                            <div class="col-md-6 col-sm-12">
-                                                <div class="form-group card-label">
-                                                    <label>From</label>
-                                                    <input id="from" name="start_time" type="time" class="form-control time" disabled>
+                                                {{-- date error message end--}}
+                                                <div class="col-md-6 col-sm-12">
+                                                    <div class="form-group card-label">
+                                                        <label>From</label>
+                                                        <input id="from" name="start_time" type="time" class="form-control time" disabled>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-md-6 col-sm-12">
-                                                <div class="form-group card-label">
-                                                    <label>To</label>
-                                                    <input id="to" name="end_time" type="time" class="form-control time" disabled>
+                                                <div class="col-md-6 col-sm-12">
+                                                    <div class="form-group card-label">
+                                                        <label>To</label>
+                                                        <input id="to" name="end_time" type="time" class="form-control time" disabled>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            {{-- time error message start--}}
-                                            <div class="col-md-12">
-                                                <div class="returnTimeError">
-                                                    <span class="text-muted"></span>
+                                                {{-- time error message start--}}
+                                                <div class="col-md-12">
+                                                    <div class="returnTimeError">
+                                                        <span class="text-muted"></span>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            {{-- time error message end--}}
-                                        </div>
-                                    </div>
-                                    <!-- /Booking Information -->
-                                        
-                                    <!-- Personal Information -->
-                                    <div class="info-widget">
-                                        <h4 class="card-title">Personal Information</h4>
-                                        <div class="row">
-                                            <div class="col-md-6 col-sm-12">
-                                                <div class="form-group card-label">
-                                                    <label>Name</label>
-                                                    <input name="name" class="form-control name" readonly type="text" 
-                                                    @guest
-                                                    @else value="{{ Auth::user()->name }}"
-                                                    @endguest>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 col-sm-12">
-                                                <div class="form-group card-label">
-                                                    <label>Phone</label>
-                                                    <input name="phone" class="form-control phone" readonly type="text"
-                                                    @guest
-                                                    @else value="{{ Auth::user()->phone }}"
-                                                    @endguest>
-                                                </div>
+                                                {{-- time error message end--}}
                                             </div>
                                         </div>
-                                    </div>
-                                    <!-- /Personal Information -->
-                                    <!-- Payment Methods -->       
-                                    <div class="payment-widget">
-                                        <h4 class="card-title">Payment Method</h4>
-                                        @foreach ($paymentMethods as $paymentMethod)
-                                        <div class="payment-list">
-                                            <label class="payment-radio credit-card-option">
-                                                <input id="paymentMethod" name="paymentMethod" value="{{ $paymentMethod->id }}" type="radio" checked>
-                                                <span class="checkmark"></span>
-                                                {{ $paymentMethod->name }}
-                                            </label>
+                                        <!-- /Booking Information -->
+
+                                        <!-- Personal Information -->
+                                        <div class="info-widget">
+                                            <h4 class="card-title">Personal Information</h4>
+                                            <div class="row">
+                                                <div class="col-md-6 col-sm-12">
+                                                    <div class="form-group card-label">
+                                                        <label>Name</label>
+                                                        <input name="name" class="form-control name" readonly type="text" 
+                                                        @guest
+                                                        @else value="{{ Auth::user()->name }}"
+                                                        @endguest>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-sm-12">
+                                                    <div class="form-group card-label">
+                                                        <label>Phone</label>
+                                                        <input name="phone" class="form-control phone" readonly type="text"
+                                                        @guest
+                                                        @else value="{{ Auth::user()->phone }}"
+                                                        @endguest>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
-                                        @endforeach
-                                        <!-- /Payment Methods -->
-                                    </div>
+                                        <!-- /Personal Information -->
+
+                                        <!-- Payment Methods -->       
+                                        <div class="payment-widget">
+                                            <h4 class="card-title">Payment Method</h4>
+                                            @foreach ($paymentMethods as $paymentMethod)
+                                            <div class="payment-list">
+                                                <label class="payment-radio credit-card-option">
+                                                    <input id="paymentMethod" name="paymentMethod" value="{{ $paymentMethod->id }}" type="radio" checked>
+                                                    <span class="checkmark"></span>
+                                                    {{ $paymentMethod->name }}
+                                                </label>
+                                            </div>
+                                            @endforeach
+                                            <!-- /Payment Methods -->
+                                        </div>
+
                                         <!-- Note -->
                                         <hr>
                                         <div class="info-widget mt-3">
-                                        <h4 class="card-title">Additional</h4>
-                                        <div class="row">
-                                            <div class="col-md-12 col-sm-12">
-                                                <div class="form-group card-label">
-                                                    <label>Note</label>
-                                                    <input id="note" name="note" type="text" class="form-control">
+                                            <h4 class="card-title">Additional</h4>
+                                            <div class="row">
+                                                <div class="col-md-12 col-sm-12">
+                                                    <div class="form-group card-label">
+                                                        <label>Note</label>
+                                                        <input id="note" name="note" type="text" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>   
+                                            <!-- Terms Accept -->
+                                            <div class="terms-accept">
+                                                <div class="custom-checkbox">
+                                                <input type="checkbox" id="terms_accept">
+                                                <label for="terms_accept">I have read and accept <a href="#">Terms &amp; Conditions</a></label>
                                                 </div>
                                             </div>
-                                        </div>
-                                           
+                                            <!-- /Terms Accept -->                                       
                                         </div>
                                         <!-- Note -->
-                                        <!-- Terms Accept -->
-                                        <div class="terms-accept">
-                                            <div class="custom-checkbox">
-                                            <input type="checkbox" id="terms_accept">
-                                            <label for="terms_accept">I have read and accept <a href="#">Terms &amp; Conditions</a></label>
-                                            </div>
-                                        </div>
-                                        <!-- /Terms Accept -->
-                                                
-                                        <!-- Submit Section -->
-                                        <div class="submit-section mt-4">
-                                            <input type="submit" value="Confirm and Pay" class="btn btn-primary submit-btn bookingStore">
-                                        </div>
-                                        <!-- /Submit Section -->
-                                <!-- /Checkout Form -->
                                         
+
+                                        <!-- Submit Button -->
+                                        <div>
+                                            <input type="submit" class="btn submit-btn btn-success" value="Confirm and Pay">
+                                        </div>
+                                        <!-- /Submit Button -->
+                                    </form>           
+                                <!-- /Checkout Form -->       
                             </div>
                         </div>
                     </div>
@@ -224,6 +233,16 @@
                                                 </li>
                                             </ul>
                                         </div>
+                                        {{-- flash back message start--}}
+                                        @if (!empty(session()->get('success')))
+                                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                                <strong class="mr-1">Success!</strong>{!! session()->get('success') !!}
+                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                        @endif
+                                        {{-- flash back message end--}}
                                     </div>
                                 </div>
                             </div>
@@ -379,41 +398,43 @@
             var summaryTotal = section * price_per_hour;
             $('.summaryTotal').html(summaryTotal + ' MMK');
 
-
+            $('#section').val(section);
+            $('#total').val(summaryTotal);
 
            
 
         })
 
-        // Store Booking
-        $('.bookingStore').submit(function(e){
-            // alert('Ok');
-            let court_id = $('#court_id').val();
-            let user_id = $('#user_id').val();
-            let date = $('#date').val();
-            let from = $('#from').val();
-            let to = $('#to').val();
-            let paymentMethod = $('#paymentMethod').val();
-            let note = $('#note').val();
+        // // Store Booking
+        // $('#bookingForm').on('click',function(e){
+        //     // prevent form submit, so we can do a manual one
+        //     e.preventDefault();
+        //     let court_id = $('#court_id').val();
+        //     let user_id = $('#user_id').val();
+        //     let date = $('#date').val();
+        //     let from = $('#from').val();
+        //     let to = $('#to').val();
+        //     let paymentMethod = $('#paymentMethod').val();
+        //     let note = $('#note').val();
 
-            $.post("{{ route('storeBooking') }}",{
-                court_id:court_id,
-                user_id:user_id,
-                date:date,
-                from:from,
-                to:to,
-                paymentMethod:paymentMethod,
-                note:note,
-                section:section,
-                summaryTotal:summaryTotal
+        //     $.post("{{route('storeBooking')}}",{
+        //         court_id:court_id,
+        //         user_id:user_id,
+        //         date:date,
+        //         from:from,
+        //         to:to,
+        //         paymentMethod:paymentMethod,
+        //         note:note,
+        //         section:section,
+        //         summaryTotal:summaryTotal
             
-            },function (response) {
-                // alert(response.msg);
-                // localStorage.clear();
-                // location.href="/";
-            })
-            e.preventDefault();
-        })  
+        //     },function (response) {
+        //         // alert(response.msg);
+        //         // localStorage.clear();
+        //         // location.href="/";
+        //     })
+        // });
+        
         // /Store Booking
 
 
