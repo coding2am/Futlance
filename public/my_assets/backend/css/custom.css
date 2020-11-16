@@ -11,3 +11,9 @@
     background: none;
     padding: 0px;
 }
+
+.courtImage {
+    width: 500px!important;
+    height: 500px!important;
+    object-fit: cover;
+}

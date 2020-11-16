@@ -1,4 +1,5 @@
 @extends('layouts.backend_template')
+@section('title', 'Payment Create')
 @section('content')
 <!-- Page Wrapper -->
 <div class="page-wrapper">
@@ -19,29 +20,26 @@
         <!-- /Page Header -->
         <div class="row">
             <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h4 class="card-title">Payment Method Form</h4>
+                <div class="card offset-md-2 col-md-8 table-border border-dark rounded p-2">
+                    <div>
+                        <h2 class="text text-center text-muted my-3">Payment Registraction Form</h2>
                     </div>
                     <div class="card-body">
                         <form method="post" action="{{ route('payment_method.store') }}">
                             @csrf
-                            <div class="row">
-                                <div class="offset-md-3 col-md-6">
-                                    <div class="form-group row">
-                                        <label class="col-lg-3 col-form-label">Name</label>
-                                        <div class="col-lg-9">
-                                            <input name="name" type="text" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}">
-                                            @error('name')
-                                                <span class="invalid-feedback" role="alert">
-                                                  <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="form-group text-right">
-                                        <button type="submit" class="btn btn-primary">Save</button>
-                                    </div>
+                            <div class="row no-gutters">
+                                <div class="form-group col-md-6">
+                                    <input name="name" type="text"
+                                        class="form-control @error('name') is-invalid @enderror"
+                                        value="{{ old('name') }}" placeholder="enter a payment name">
+                                    @error('name')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <button type="submit" class="btn btn-block btn-dark">Create</button>
                                 </div>
                             </div>
                         </form>

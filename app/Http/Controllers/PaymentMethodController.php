@@ -39,7 +39,7 @@ class PaymentMethodController extends Controller
         // dd($request);
 
         // Validation
-        $request-> validate([
+        $request->validate([
             "name" => "required|min:5",
         ]);
 
@@ -49,7 +49,7 @@ class PaymentMethodController extends Controller
         $paymentMethod->save();
 
         // redirect
-        return redirect()->route('payment_method.index');
+        return redirect()->route('payment_method.index')->with('success', 'Payment has been created successfully!');
     }
 
     /**
@@ -83,10 +83,10 @@ class PaymentMethodController extends Controller
      */
     public function update(Request $request, PaymentMethod $paymentMethod)
     {
-         // dd($request);
+        // dd($request);
 
         // Validation
-        $request-> validate([
+        $request->validate([
             "name" => "required|min:5",
         ]);
 
@@ -95,7 +95,7 @@ class PaymentMethodController extends Controller
         $paymentMethod->save();
 
         // redirect
-        return redirect()->route('payment_method.index');
+        return redirect()->route('payment_method.index')->with('success', 'Your changes has been saved!');
     }
 
     /**

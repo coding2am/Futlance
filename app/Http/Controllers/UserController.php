@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Support\Facades\Redirect;
 
 class UserController extends Controller
 {
@@ -183,7 +183,7 @@ class UserController extends Controller
     public function roleUpdate(Request $request, $id)
     {
         DB::table('model_has_roles')->where('model_id', $id)->update(['role_id' => $request->role]);
-        return redirect()->route('user.index');
+        return redirect()->back()->with('success', 'Role has been successfully updated');
     }
 
     public function on($id)

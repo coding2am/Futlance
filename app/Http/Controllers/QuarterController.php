@@ -41,8 +41,8 @@ class QuarterController extends Controller
         // dd($request);
 
         // Validation
-        $request-> validate([
-            "name" => "required|min:5",
+        $request->validate([
+            "name" => "required|min:2",
         ]);
 
         // store
@@ -52,7 +52,7 @@ class QuarterController extends Controller
         $quarter->save();
 
         // redirect
-        return redirect()->route('quarter.index');
+        return redirect()->route('quarter.index')->with('success', 'Quarter has been added successfully!');
     }
 
     /**
@@ -90,8 +90,8 @@ class QuarterController extends Controller
         // dd($request);
 
         // Validation
-        $request-> validate([
-            "name" => "required|min:5",
+        $request->validate([
+            "name" => "required|min:2",
         ]);
 
         // store
@@ -100,7 +100,7 @@ class QuarterController extends Controller
         $quarter->save();
 
         // redirect
-        return redirect()->route('quarter.index');
+        return redirect()->route('quarter.index')->with('success', 'Your changes has been saved!');
     }
 
     /**
@@ -112,6 +112,6 @@ class QuarterController extends Controller
     public function destroy(Quarter $quarter)
     {
         $quarter->delete('quarter');
-        return redirect()->route('quarter.index');
+        return redirect()->route('quarter.index')->with('success', 'Quarter has been deleted successfully!');
     }
 }

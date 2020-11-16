@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title')</title>
 
     <!-- Bootstrap CSS -->
@@ -189,7 +190,7 @@
 
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
-                                                                                        document.getElementById('logout-form').submit();">
+                                                                                                                document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
                                 </a>
 

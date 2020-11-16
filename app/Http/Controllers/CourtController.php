@@ -29,7 +29,7 @@ class CourtController extends Controller
     {
         $cities = City::all();
         $quarters = Quarter::all();
-        return view('backend.court.create', compact('cities','quarters'));
+        return view('backend.court.create', compact('cities', 'quarters'));
     }
 
     /**
@@ -43,21 +43,21 @@ class CourtController extends Controller
         // dd($request);
 
         // Validation
-        $request-> validate([
-            "name" => "required|min:5",
-            "photo" => "required|mimes:jpeg,bmp,png", // a.jpg
+        $request->validate([
+            "name" => "required|min:2",
+            "photo" => "required|mimes:jpeg,bmp,png,jpg", // a.jpg
             "price" => "required",
             "quarter" => "required"
         ]);
 
         // If include file, upload
-        if($request->file()) {
-            $fileName = time().'_'.$request->photo->getClientOriginalName();
+        if ($request->file()) {
+            $fileName = time() . '_' . $request->photo->getClientOriginalName();
 
             $filePath = $request->file('photo')->storeAs('court', $fileName, 'public');
             // $path = public_path('my_assets/images/courts/'.$fileName);
             // dd($path);
-            $path = '/storage/'.$filePath;
+            $path = '/storage/' . $filePath;
             $user_id = 1;
         }
 
@@ -71,7 +71,7 @@ class CourtController extends Controller
         $court->save();
 
         // redirect
-        return redirect()->route('court.index');
+        return redirect()->route('court.index')->with('success', 'Court has been added successfully!');
     }
 
     /**
@@ -116,14 +116,16 @@ class CourtController extends Controller
      */
     public function destroy(Court $court)
     {
-        //
+        $court->delete();
+        unlink(public_path($court->photo));
+        return redirect()->route('court.index')->with('success', 'Court has been deleted successfully!');
     }
 
     // Filter Function
     public function filterCity(Request $request)
     {
         $cid = $request->cid;
-        $quarters = Quarter::where('city_id',$cid)->get();
+        $quarters = Quarter::where('city_id', $cid)->get();
         return $quarters;
     }
 }

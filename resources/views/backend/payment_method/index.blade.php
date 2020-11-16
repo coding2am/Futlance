@@ -1,4 +1,5 @@
 @extends('layouts.backend_template')
+@section('title', 'Payment Method')
 @section('content')
 <!-- Page Wrapper -->
 <div class="page-wrapper">
@@ -23,7 +24,19 @@
                 <!-- Recent Orders -->
                 <div class="card">
                     <div class="card-body">
-                        <a href="{{ route('payment_method.create') }}" class="btn btn-info float-right">Add New</a>
+                        <a href="{{ route('payment_method.create') }}" class="btn btn-sm btn-info float-right mb-2">Add New
+                            <i class="fas fa-plus-circle"></i>
+                        </a>
+                        {{-- flash back message start--}}
+                        @if (!empty(session()->get('success')))
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <strong class="mr-1">Success!</strong>{!! session()->get('success') !!}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        @endif
+                        {{-- flash back message end--}}
                         <div class="table-responsive">
                             <table class="datatable table table-hover table-center mb-0">
                                 <thead>
@@ -42,12 +55,19 @@
                                         <td>{{ $i++ }}</td>
                                         <td>{{ $paymentMethod->name }}</td>
                                         <td>
-                                            <a href="{{ route('payment_method.edit', $paymentMethod->id) }}" class="btn btn-warning">Edit</a>
-                                            <form method="post" action="{{ route('payment_method.destroy', $paymentMethod->id) }}" class="d-inline-block" onsubmit="return confirm('Are you Sure to Delete?')">
-                                            @csrf
-                                            @method('DELETE')
-                                            <input type="submit" name="btnsubmit" value="Delete" class="btn btn-danger">
-                                            </form>
+                                            <div class="btn-group btn-group-sm" role="group" aria-label="...">
+                                                <a href="{{ route('payment_method.edit', $paymentMethod->id) }}"
+                                                    class="btn btn-sm btn-info mr-1">Edit</a>
+                                                <form method="post"
+                                                    action="{{ route('payment_method.destroy', $paymentMethod->id) }}"
+                                                    class="d-inline-block"
+                                                    onsubmit="return confirm('Are you Sure to Delete?')">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <input type="submit" name="btnsubmit" value="Delete"
+                                                        class="btn btn-sm btn-danger">
+                                                </form>
+                                            </div>
                                         </td>
                                     </tr>
                                     @endforeach
