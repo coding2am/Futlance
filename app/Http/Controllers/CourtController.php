@@ -93,7 +93,7 @@ class CourtController extends Controller
      */
     public function edit(Court $court)
     {
-        //
+        return view('backend.court.edit')
     }
 
     /**
