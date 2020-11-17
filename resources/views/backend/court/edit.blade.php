@@ -29,7 +29,7 @@
                             @method('put')
                             <div class="row no-gutters">
                                 {{-- photo --}}
-                                <div class="form-group">
+                                <div class="form-group col-md-4 offset-md-1">
                                     <label>Photo: (<small class="text-danger">*only allow jpeg, jpg, bmp, png</small>)</label>
     
                                     <ul class="nav nav-tabs" id="myTab" role="tablist">
