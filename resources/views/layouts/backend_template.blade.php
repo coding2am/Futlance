@@ -37,10 +37,12 @@
             <!-- Logo -->
             <div class="header-left">
                 <a href="index.html" class="logo">
-                    <img src="{{ asset('my_assets/backend/img/logo.png') }}" alt="Logo">
+                    <h1>Futlance</h1>
+                    {{-- <img src="{{ asset('my_assets/backend/img/logo.png') }}" alt="Logo"> --}}
                 </a>
                 <a href="index.html" class="logo logo-small">
-                    <img src="{{ asset('my_assets/backend/img/logo-small.png') }}" alt="Logo" width="30" height="30">
+                    <h1>F</h1>
+                    {{-- <img src="{{ asset('my_assets/backend/img/logo-small.png') }}" alt="Logo" width="30" height="30"> --}}
                 </a>
             </div>
             <!-- /Logo -->
@@ -208,11 +210,10 @@
                             <a href="{{ route('user.index') }}"><i class="fe fe-users"></i> <span>Customers</span></a>
                         </li>
                         <li class="{{ Request::is('city*') ? 'active' : '' }}">
-                            <a href="{{ route('city.index') }}"><i class="fe fe-star-o"></i> <span>Cities</span></a>
+                            <a href="{{ route('city.index') }}"><i class="fe fe-map"></i> <span>Cities</span></a>
                         </li>
                         <li class="{{ Request::is('quarter*') ? 'active' : '' }}">
-                            <a href="{{ route('quarter.index') }}"><i class="fe fe-star-o"></i>
-                                <span>Quarters</span></a>
+                            <a href="{{ route('quarter.index') }}"><i class="fe fe-map"></i> <span>Quarters</span></a>
                         </li>
                         <li class="{{ Request::is('court*') ? 'active' : '' }}">
                             <a href="{{ route('court.index') }}"><i class="fe fe-tag"></i> <span>Courts</span></a>
