@@ -19,7 +19,7 @@
         </div>
         <!-- /Page Header -->
 
-        <div class="row">
+        {{-- <div class="row">
             <div class="col-xl-3 col-sm-6 col-12">
                 <div class="card">
                     <div class="card-body">
@@ -487,7 +487,7 @@
                 <!-- /Recent Orders -->
 							
             </div>
-        </div>
+        </div> --}}
 					
     </div>			
 </div>
