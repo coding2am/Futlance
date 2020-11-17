@@ -93,7 +93,9 @@ class CourtController extends Controller
      */
     public function edit(Court $court)
     {
-        //
+        $cities = City::all();
+        $quarters = Quarter::all();
+        return view('backend.court.edit',compact('court','cities','quarters'));
     }
 
     /**
@@ -105,7 +107,29 @@ class CourtController extends Controller
      */
     public function update(Request $request, Court $court)
     {
-        //
+        $request->validate([
+            "name" => "required|min:2",
+            "photo" => "required|mimes:jpeg,bmp,png,jpg", // a.jpg
+            "price" => "required",
+            "quarter" => "required"
+        ]);
+        if ($request->file()) {
+            unlink(public_path($request->oldphoto));
+            $fileName = time() . '_' . $request->file('photo')->getClientOriginalName();
+            $filePath = $request->file('photo')->storeAs('court', $fileName, 'public');
+            $path = '/storage/' . $filePath;
+        } else {
+            $path = $request->oldphoto;
+        }
+
+        $court->user_id = $request->user_id;
+        $court->name = $request->name;
+        $court->photo = $path;
+        $court->price_per_hour = $request->price;
+        $court->quarter_id = $request->quarter;
+        $court->save();
+
+        return redirect()->route('court.index')->with('success', 'Your changes has been saved');
     }
 
     /**
