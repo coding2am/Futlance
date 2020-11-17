@@ -104,7 +104,7 @@
                                 <a href="doctor-profile.html" class="btn view-btn">View</a>
                             </div>
                             <div class="col-6">
-                                <a href="{{ route('court_booking', $court->id) }}" class="btn book-btn">Book Now</a>
+                                <a href="@if(Auth::user()) {{route('court_booking', $court->id)}} @else {{route('user.signin')}}  @endif" class="btn book-btn">Book Now</a>
                             </div>
                         </div>
                     </div>
