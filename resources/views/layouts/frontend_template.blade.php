@@ -76,7 +76,7 @@
                 <ul class="nav header-navbar-rht">
                     <li class="nav-item contact-item">
                         <div class="header-contact-img">
-                            <i class="far fa-hospital"></i>
+                            <i class="fas fa-mobile-alt"></i>
                         </div>
                         <div class="header-contact-detail">
                             <p class="contact-header">Contact</p>
@@ -105,7 +105,7 @@
 
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
-                                                                                                                document.getElementById('logout-form').submit();">
+                                    document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
                                 </a>
 

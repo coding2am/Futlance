@@ -120,9 +120,10 @@
 
 <!-- Courts -->
 <div class="container filtered_courts">
+    {{-- <h1>Search result</h1> --}}
     <div class="row mt-5 courts">
         @foreach ($courts as $court)
-        <div class="col-md-4">
+        {{-- <div class="col-md-4">
             <div class="card" style="width: 18rem;">
                 <img src="{{ asset($court->photo) }}" class="card-img-top" alt="court photo">
                 <div class="card-body">
@@ -131,7 +132,7 @@
                   <a href="#" class="btn btn-primary">Go somewhere</a>
                 </div>
               </div>
-        </div>
+        </div> --}}
         @endforeach
     </div>
 </div>
@@ -140,55 +141,53 @@
 @section('script')
   <script type="text/javascript">
     $(document).ready(function () {
-        $('.filtered_courts').hide();
+        // $('.filtered_courts').hide();
         $.ajaxSetup({
         headers: {
           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
 
-    $('.city').change(function () {
-        let city_id = $(this).val();
-        // alert(city_id);
-        $.post("{{route('filterCity')}}",{cid:city_id},function (response) {
-        //   console.log(response);
-          var html = "";
-          for(let row of response){
-            html+=`<option value="${row.id}">${row.name}</option>`;
-          }
-          $('.quarter_option').html(html);
-          $('.quarter').prop('disabled',false);
-          
-        })
-    })
-
-    $('.searchBtn').click(function() {
-        // alert('ok');
-        let quarter_id = $('.quarter').val();
-        // console.log(quarter_id);
-        $.post("{{route('filterQuarter')}}",{qid:quarter_id},function (response) {
-        //   console.log(response);
+        $('.city').change(function () {
+            let city_id = $(this).val();
+            // alert(city_id);
+            $.post("{{route('filterCity')}}",{cid:city_id},function (response) {
+            //   console.log(response);
             var html = "";
             for(let row of response){
-            html+=`
-            <div class="col-md-4">
-                <div class="card" style="width: 18rem;">
-                    <img src="${ row.photo }" class="card-img-top" alt="court photo">
-                    <div class="card-body">
-                        <h5 class="card-title">${ row.name }</h5>
-                        <p class="card-text">${ row.price_per_hour } Ks (per hour)</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                    </div>
-            </div>`;
+                html+=`<option value="${row.id}">${row.name}</option>`;
             }
-            $('.allCourts').hide();
-            $('.filtered_courts').show();
-            $('.courts').html(html);          
+            $('.quarter_option').html(html);
+            $('.quarter').prop('disabled',false);
+            
+            })
         })
-    })
 
-
+        $('.searchBtn').click(function() {
+            // alert('ok');
+            let quarter_id = $('.quarter').val();
+            // console.log(quarter_id);
+            $.post("{{route('filterQuarter')}}",{qid:quarter_id},function (response) {
+            //   console.log(response);
+                var html = "";
+                for(let row of response){
+                html+=`
+                <div class="col-md-4">
+                    <div class="card" style="width: 18rem;">
+                        <img src="${ row.photo }" class="card-img-top" alt="court photo">
+                        <div class="card-body">
+                            <h5 class="card-title">${ row.name }</h5>
+                            <p class="card-text">${ row.price_per_hour } Ks (per hour)</p>
+                            <a href="court_booking/${ row.id }" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                        </div>
+                </div>`;
+                }
+                $('.allCourts').hide();
+                $('.filtered_courts').show();
+                $('.courts').html(html);          
+            })
+        })
     })
   </script>
 @endsection
