@@ -56,6 +56,9 @@
                             <a href="{{ route('homepage') }}">Home</a>
                         </li>
                         <li class="has-submenu">
+                            <a href="{{ route('homepage') }}">Courts</a>
+                        </li>
+                        <li class="has-submenu">
                             <a href="{{ route('homepage') }}">About us</a>
                         </li>
                         <li class="has-submenu">

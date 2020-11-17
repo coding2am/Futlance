@@ -27,7 +27,7 @@
                     <div class="card-body">
                         <form method="post" action="{{ route('payment_method.store') }}">
                             @csrf
-                            <div class="row no-gutters">
+                            <div class="row">
                                 <div class="form-group col-md-6">
                                     <input name="name" type="text"
                                         class="form-control @error('name') is-invalid @enderror"

@@ -24,8 +24,9 @@
                     <!-- Recent Orders -->
                     <div class="card">
                         <div class="card-body">
-                            <a href="{{ route('court.create') }}" class="btn btn-sm btn-info float-right mb-2">Add New <i
-                                    class="fas fa-plus-circle"></i></a>
+                            <a href="{{ route('court.create') }}" class="btn btn-sm btn-info float-right mb-2">
+                                <i class="fas fa-plus"></i> Add New
+                            </a>
                             {{-- flash back message start--}}
                             @if (!empty(session()->get('success')))
                                 <div class="alert alert-success alert-dismissible fade show" role="alert">
