@@ -86,7 +86,6 @@
                             <i class="fas fa-star filled"></i>
                             <i class="fas fa-star filled"></i>
                             <i class="fas fa-star filled"></i>
-                            <span class="d-inline-block average-rating">(17)</span>
                         </div>
                         <ul class="available-info">
                             <li>

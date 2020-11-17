@@ -24,11 +24,6 @@
     <link rel="stylesheet" href="{{ asset('my_assets/backend/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('my_assets/backend/css/custom.css') }}">
 
-    <!-- Select2 CSS -->
-    <link rel="stylesheet" href="{{ asset('my_assets/backend/css/select2.min.css') }}">
-
-    <!-- Main CSS -->
-    <link rel="stylesheet" href="{{ asset('my_assets/backend/css/style.css') }}">
 </head>
 
 <body>
@@ -204,14 +199,13 @@
                                 <span>Bookings</span></a>
                         </li>
                         <li class="{{ Request::is('member*') ? 'active' : '' }}">
-                            <a href="{{ route('user.member') }}"><i class="fe fe-layout"></i>
-                                <span>Members</span></a>
+                            <a href="{{ route('user.member') }}"><i class="fe fe-users"></i> <span>Members</span></a>
                         </li>
                         <li class="{{ Request::is('owner*') ? 'active' : '' }}">
-                            <a href="{{ route('user.owner') }}"><i class="fe fe-user-plus"></i> <span>Owners</span></a>
+                            <a href="{{ route('user.owner') }}"><i class="fe fe-users"></i> <span>Owners</span></a>
                         </li>
                         <li class="{{ Request::is('user*') ? 'active' : '' }}">
-                            <a href="{{ route('user.index') }}"><i class="fe fe-user"></i> <span>Customers</span></a>
+                            <a href="{{ route('user.index') }}"><i class="fe fe-users"></i> <span>Customers</span></a>
                         </li>
                         <li class="{{ Request::is('city*') ? 'active' : '' }}">
                             <a href="{{ route('city.index') }}"><i class="fe fe-star-o"></i> <span>Cities</span></a>
@@ -221,11 +215,10 @@
                                 <span>Quarters</span></a>
                         </li>
                         <li class="{{ Request::is('court*') ? 'active' : '' }}">
-                            <a href="{{ route('court.index') }}"><i class="fe fe-star-o"></i> <span>Courts</span></a>
+                            <a href="{{ route('court.index') }}"><i class="fe fe-tag"></i> <span>Courts</span></a>
                         </li>
                         <li class="{{ Request::is('payment_method*') ? 'active' : '' }}">
-                            <a href="{{ route('payment_method.index') }}"><i class="fe fe-star-o"></i> <span>Payment
-                                    Method</span></a>
+                            <a href="{{ route('payment_method.index') }}"><i class="fe fe-credit-card"></i> <span>Payment Methods</span></a>
                         </li>
                     </ul>
                 </div>
@@ -248,6 +241,10 @@
 
     <!-- Slimscroll JS -->
     <script src="{{ asset('my_assets/backend/plugins/slimscroll/jquery.slimscroll.min.js') }}"></script>
+
+    <!-- Datatable -->
+    <script src="{{ asset('my_assets/backend/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('my_assets/backend/plugins/datatables/datatables.min.js') }}"></script>
 
     <script src="{{ asset('my_assets/backend/plugins/raphael/raphael.min.js') }}"></script>
     <script src="{{ asset('my_assets/backend/plugins/morris/morris.min.js') }}"></script>
