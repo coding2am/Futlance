@@ -118,7 +118,7 @@
                                         @foreach ($paymentMethods as $paymentMethod)
                                         <div class="payment-list">
                                             <label class="payment-radio credit-card-option">
-                                                <input id="paymentMethod" name="paymentMethod" value="{{ $paymentMethod->id }}" type="radio" checked>
+                                                <input id="paymentMethod" name="paymentMethod" value="{{ $paymentMethod->id }}" type="radio">
                                                 <span class="checkmark"></span>
                                                 {{ $paymentMethod->name }}
                                             </label>
@@ -183,7 +183,7 @@
                                             <i class="fas fa-star filled"></i>
                                             <i class="fas fa-star filled"></i>
                                             <i class="fas fa-star filled"></i>
-                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star filled"></i>
                                         </div>
                                         <div class="clinic-details">
                                             <p class="doc-location"><i class="fas fa-map-marker-alt"></i> {{ $court->quarter->name }}, {{ $court->quarter->city->name }}</p>
