@@ -54,12 +54,12 @@
                                             <td>{{ $num++ }}</td>
                                             <td>{{ $booking->booking_no }}</td>
                                             <td>
-                                                <td>{{ $booking->booking_date }} <span class="text-primary d-block">{{ $booking->start_time }} - {{ $booking->end_time }}</span></td>
-                                                {{-- <div class="text-dark">{{ $booking->booking_date }}</div>
+                                                {{-- <td>{{ $booking->booking_date }} <span class="text-primary d-block">{{ $booking->start_time }} - {{ $booking->end_time }}</span></td> --}}
+                                                <div class="text-dark">{{ $booking->booking_date }}</div>
                                                 <div class="row">
-                                                    <div class="text-dark col-md-6"><small>{{ $booking->start_time }}</small></div>
-                                                    <div class="text-dark col-md-6"><small>{{ $booking->end_time }}</small></div>
-                                                </div> --}}
+                                                    <div class="text-success col-md-4"><small>{{ $booking->start_time }}</small></div>
+                                                    <div class="text-success col-md-4"><small>{{ $booking->end_time }}</small></div>
+                                                </div>
                                             </td>
                                             <td>{{ $booking->user->name }}</td>
                                             <td>{{ $booking->court->name }}</td>
