@@ -45,3 +45,10 @@ Route::post('filterTime', 'BookingController@filterTime')->name('filterTime');
 Route::post('filterCheckDate', 'BookingController@filterCheckDate')->name('filterCheckDate');
 Route::post('filterCheckStartTime', 'BookingController@filterCheckStartTime')->name('filterCheckStartTime');
 Route::post('filterCheckEndTime', 'BookingController@filterCheckEndTime')->name('filterCheckEndTime');
+
+Route::group(['middleware'=>['owner']],function(){
+    Route::get('/checking',function(){
+        return "This is Checking";
+    });
+});
+

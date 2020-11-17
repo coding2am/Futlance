@@ -57,8 +57,8 @@
                                                 <td>{{ $i++ }}</td>
                                                 <td>
                                                     <h2 class="table-avatar">
-                                                        <a href="profile.html" class="avatar avatar-sm mr-2"><img
-                                                                class="avatar-img rounded-circle mr-2"
+                                                    <a href="{{route('court.show',$court->id)}}" class="avatar avatar-sm mr-2"><img
+                                                                class="avatar-img mr-2"
                                                                 src="{{ asset($court->photo) }}"
                                                                 alt="Court Image">{{ substr($court->name,0,10) }}</a>
                                                     </h2>

@@ -40,6 +40,38 @@
 
                                     <!-- Booking Information -->
                                     <div class="info-widget">
+                                        <div>
+                                            <div class="row">
+                                               <div class="col-md-6">
+                                                <button type="button" class="btn btn-info my-2">
+                                                    Your Current point(s) : <span><i class="fas fa-coins mr-1"></i> <span> <span class="badge badge-light">{{$point}}</span>
+                                                </button>
+                                               </div>
+                                                <div class="card p-3 col-md-6">
+                                                    <h5 class="text-muted">Points</h5>
+                                                    <small class="text-muted">
+                                                        <ul>
+                                                            <li>You can get points by making booking.</li>
+                                                            <li>You can use that point as a payment.</li>
+                                                            <li>You can only spend that points for related courts.</li>
+                                                        </ul>
+                                                        <span>( We gave different points for differnet courts )</span>
+                                                    </small>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        {{-- flash back message start--}}
+                                        @if (!empty(session()->get('success')))
+                                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                                <strong class="mr-1">Success!</strong>{!! session()->get('success') !!}
+                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                        @endif
+                                        {{-- flash back message end--}}
+                                        
                                         <h4 class="card-title">Booking Information</h4>
                                         <div class="row">
                                             <div class="col-md-12 col-sm-12">
@@ -208,11 +240,11 @@
                                             <ul class="booking-total-list">
                                                 <li>
                                                     <span>Total</span>
-                                                    <span class="total-cost summaryTotal"></span>
+                                                <span class="total-cost summaryTotal">{{$court->price_per_hour}} MMK</span>
                                                 </li>
                                                 <li>
                                                     <span>Pre-Paid Amount</span>
-                                                    <span class="total-cost summaryPrePaid"></span>
+                                                    <span class="total-cost summaryPrePaid">{{ ($court->price_per_hour) * 0.3 }} MMk</span>
                                                 </li>
                                             </ul>
                                         </div>
@@ -251,9 +283,11 @@
         // date change function start
         $('.date').change(function() {
             let date = $(this).val();
+            let court_id = {{$court->id}};
             //alert(date);
             $.post("{{ route('filterTime') }}", {
                 date: date,
+                court_id: court_id,
             }, function(response) {
                 //console.log(response);
                 let html = "";

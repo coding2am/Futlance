@@ -158,23 +158,23 @@
                 <li class="nav-item dropdown has-arrow">
                     <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
                         <span class="user-img"><img class="rounded-circle"
-                                src="{{ asset('my_assets/backend/img/profiles/avatar-01.jpg') }}" width="31"
-                                alt="Ryan Taylor"></span>
+                                src="{{asset(Auth::user()->photo)}}" width="31"
+                                alt="Ryan Taylor"></sp{{asset(Auth::user()->photo)}}an>
                     </a>
                     <div class="dropdown-menu">
                         <div class="user-header">
                             <div class="avatar avatar-sm">
-                                <img src="assets/img/profiles/avatar-01.jpg" alt="User Image"
+                            <img src="{{asset(Auth::user()->photo)}}" alt="User Image"
                                     class="avatar-img rounded-circle">
                             </div>
                             <div class="user-text">
-                                <h6>Ryan Taylor</h6>
+                            <h6>{{Auth::user()->name}}</h6>
                                 <p class="text-muted mb-0">Administrator</p>
                             </div>
                         </div>
-                        <a class="dropdown-item" href="profile.html">My Profile</a>
-                        <a class="dropdown-item" href="settings.html">Settings</a>
-                        <a class="dropdown-item" href="login.html">Logout</a>
+                        <a class="dropdown-item" href="#">My Profile</a>
+                        <a class="dropdown-item" href="#">Settings</a>
+                    <a class="dropdown-item" href=" {{ __('Logout') }}">Logout</a>
                     </div>
                 </li>
                 <!-- /User Menu -->

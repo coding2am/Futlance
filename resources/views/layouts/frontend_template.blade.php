@@ -99,7 +99,8 @@
 
                                 @if (Auth::user()->getRoleNames()[0] == 'admin')
                                     <a class="dropdown-item" href="{{ url('/admin') }}">Admin Dashboard</a>
-                                @else
+                                @elseif(Auth::user()->getRoleNames()[0] == 'owner')
+                                <a class="dropdown-item" href="{{ url('/owner_dashboard') }}">Owner Dashboard</a>
                                 @endif
 
                                 <a class="dropdown-item" href="{{ route('logout') }}"

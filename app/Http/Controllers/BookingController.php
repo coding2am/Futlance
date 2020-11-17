@@ -8,6 +8,7 @@ use App\PaymentMethod;
 use Illuminate\Http\Request;
 use Symfony\Component\VarDumper\Cloner\Data;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class BookingController extends Controller
 {
@@ -91,9 +92,21 @@ class BookingController extends Controller
 
     public function courtBooking($id)
     {
+        $point = 0;
+        if(Auth::user())
+        {
+            $current_user_id = Auth::user()->id;
+            $counts = DB::select("SELECT count FROM court_user WHERE user_id =".$current_user_id." AND court_id =". $id);
+            // $counts = DB::table('court_user')->where('user_id',$current_user_id)->get('count');
+            foreach($counts as $count)
+            {
+                $point += (intval($count->count)) * 100;
+            }
+        }
+
         $court = Court::find($id);
         $paymentMethods = PaymentMethod::all();
-        return view('frontend.booking.index', compact('court','paymentMethods'));
+        return view('frontend.booking.index', compact('court','paymentMethods','point'));
     }
 
     public function checkout()
@@ -101,13 +114,19 @@ class BookingController extends Controller
         return view('frontend.booking.checkout');
     }
 
+    // taken booking section display function
     public function filterTime(Request $request)
     {
         $date = $request->date;
-        $booking = Booking::where('booking_date', $date)->get();
+        $court_id = $request->court_id;
+        $booking = Booking::where([
+            ['court_id','=',$court_id],
+            ['booking_date','=',$date],
+        ])->get();
         return $booking;
     }
 
+    // date check function
     public function filterCheckDate(Request $request)
     {
         date_default_timezone_set('Asia/Yangon');
@@ -128,6 +147,7 @@ class BookingController extends Controller
 
         return $message;
     }
+    // start time check function
     public function filterCheckStartTime(Request $request)
     {
         date_default_timezone_set('Asia/Yangon');
@@ -138,17 +158,27 @@ class BookingController extends Controller
         // $sections = floor($minutes / 60);
         $start_time = strtotime($request->from);
         $closeTime = strtotime(date("H:i",mktime(22,00)));
-        if($start_time > $closeTime)
+        $openTime = strtotime(date("H:i",mktime(6,00)));
+
+        if($start_time > $openTime || $start_time == $openTime)
         {
-            $message = "Sorry Booking are closed at 9:00pm";
-        }
+           if($start_time > $closeTime || $start_time == $closeTime)
+           {
+            $message = "Sorry Booking are closed at 9:00 pm";
+            }
+            else
+            {
+                $message = "";
+            }
+        } 
         else
         {
-            $message = "";
+            $message = "Sorry Booking are open at 6:00 am";
         }
         return $message;
     }
 
+    // end time check function
     public function filterCheckEndTime(Request $request)
     {
         date_default_timezone_set('Asia/Yangon');
@@ -158,7 +188,8 @@ class BookingController extends Controller
         // $minutes = ($end_time - $start_time) / 60;
         // $sections = floor($minutes / 60);
         $end_time = strtotime($request->to);
-        $closeTime = strtotime(date("H:i",mktime(22,00)));
+        $closeTime = strtotime(date("H:i",mktime(21,00)));
+
         if($end_time > $closeTime)
         {
             $message = "Sorry Booking are closed at 9:00pm";
@@ -170,6 +201,7 @@ class BookingController extends Controller
         return $message;
     }
 
+    // store Booking function
     public function storeBooking(Request $request)
     {
         $count = $request->section;

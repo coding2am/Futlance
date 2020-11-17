@@ -73,7 +73,7 @@ class UserController extends Controller
 
             $user->assignRole("customer");
 
-            return redirect()->route('user.login')->with('success', 'User Registration has been successful! Please login.');
+            return redirect()->route('user.signin')->with('success', 'User Registration has been successful! Please login.');
         } else {
             return redirect()->back()->with("error", "Password are didn't match");
         }
@@ -108,7 +108,7 @@ class UserController extends Controller
 
             $user->assignRole("owner");
 
-            return redirect()->route('user.login')->with('success', 'User Registration has been successful! Please login.');
+            return redirect()->route('user.signin')->with('success', 'User Registration has been successful! Please login.');
         } else {
             return redirect()->back()->with("error", "Password are didn't match");
         }

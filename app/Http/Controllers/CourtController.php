@@ -82,7 +82,9 @@ class CourtController extends Controller
      */
     public function show(Court $court)
     {
-        //
+        $cities = City::all();
+        $quarters = Quarter::all();
+        return view('backend.court.detail',compact('court','cities','quarters'));
     }
 
     /**
