@@ -10,6 +10,12 @@ Route::get('/profile', 'FrontendController@profile')->name('profile');
 //Owner Route
 Route::group(['middleware'=>['owner']],function(){
     Route::get('/owner_dashboard', 'OwnerController@index')->name('owner_dashboard');
+    Route::get('/owner_booking', 'OwnerController@booking')->name('owner.booking');
+    Route::get('/owner_court', 'OwnerController@court')->name('owner.court');
+    Route::get('/owner_court_edit/{id}', 'OwnerController@courtEdit')->name('owner.court.edit');
+    Route::get('/owner_court_create', 'OwnerController@courtCreate')->name('owner.court.create');
+    Route::post('/owner_court_create', 'OwnerController@courtStore')->name('owner.court.store');
+    Route::put('/owner_court_edit/{id}', 'OwnerController@courtUpdate')->name('owner.court.update');
 });
 
 //Admin Route
@@ -25,12 +31,12 @@ Route::group(['middleware'=>['admin']],function(){
     Route::post('/off/{id}', 'UserController@off')->name('user.off');
     //Quarter Controller
     Route::resource('quarter', 'QuarterController');
-    //Court Controller
-    Route::resource('court', 'CourtController');
     //City Controller
     Route::resource('city', 'CityController');
     //Payment Controller
     Route::resource('payment_method', 'PaymentMethodController');
+    //Court Controller
+    Route::resource('court', 'CourtController');
 });
 
 //User Controllers Route

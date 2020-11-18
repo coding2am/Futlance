@@ -40,8 +40,7 @@ class CourtController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
-
+    
         // Validation
         $request->validate([
             "name" => "required|min:2",

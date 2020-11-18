@@ -159,7 +159,7 @@
                     <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
                         <span class="user-img"><img class="rounded-circle"
                                 src="{{asset(Auth::user()->photo)}}" width="31"
-                                alt="Ryan Taylor"></sp{{asset(Auth::user()->photo)}}an>
+                                alt="Ryan Taylor">
                     </a>
                     <div class="dropdown-menu">
                         <div class="user-header">
@@ -174,7 +174,15 @@
                         </div>
                         <a class="dropdown-item" href="#">My Profile</a>
                         <a class="dropdown-item" href="#">Settings</a>
-                    <a class="dropdown-item" href=" {{ __('Logout') }}">Logout</a>
+                        <a class="dropdown-item" href="{{ route('logout') }}"
+                            onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();">
+                            {{ __('Logout') }}
+                        </a>
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
                     </div>
                 </li>
                 <!-- /User Menu -->
