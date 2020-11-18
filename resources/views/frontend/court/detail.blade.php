@@ -1,5 +1,5 @@
 @extends('layouts.frontend_template')
-@section('title', 'Home Page')
+@section('title', 'Court Detail')
 @section('content')
 <!-- Breadcrumb -->
 <div class="breadcrumb-bar">

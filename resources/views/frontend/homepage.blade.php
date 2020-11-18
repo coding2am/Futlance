@@ -159,17 +159,6 @@
             //   console.log(response);
                 var html = "";
                 for(let row of response){
-                // html+=`
-                // <div class="col-md-4">
-                //     <div class="card" style="width: 18rem;">
-                //         <img src="${ row.photo }" class="card-img-top" alt="court photo">
-                //         <div class="card-body">
-                //             <h5 class="card-title">${ row.name }</h5>
-                //             <p class="card-text">${ row.price_per_hour } Ks (per hour)</p>
-                //             <a href="court_booking/${ row.id }" class="btn btn-primary">Go somewhere</a>
-                //         </div>
-                //         </div>
-                // </div>`;
                 html+=`
                 <div class="col-md-3 col-sm-6">
                     <div class="profile-widget">
@@ -204,10 +193,10 @@
                             </ul>
                             <div class="row row-sm">
                                 <div class="col-6">
-                                    <a href="doctor-profile.html" class="btn view-btn">View</a>
+                                    <a href="/court_detail/${ row.id }" class="btn view-btn">View</a>
                                 </div>
                                 <div class="col-6">
-                                    <a href="@if(Auth::user()) {{route('court_booking', $court->id)}} @else {{route('user.signin')}}  @endif" class="btn book-btn">Book Now</a>
+                                    <a href="/court_booking/${ row.id }" class="btn book-btn">Book Now</a>
                                 </div>
                             </div>
                         </div>

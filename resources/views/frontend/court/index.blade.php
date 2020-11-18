@@ -1,5 +1,5 @@
 @extends('layouts.frontend_template')
-@section('title', 'Home Page')
+@section('title', 'Courts Page')
 @section('content')
 <style>
     .courtImage {
