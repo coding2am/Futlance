@@ -8,7 +8,7 @@
             <div class="col-md-12 col-12">
                 <nav aria-label="breadcrumb" class="page-breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index-2.html">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{{route('homepage')}}">Home</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
                     </ol>
                 </nav>
@@ -37,6 +37,9 @@
                                 <h3>{{ $owner->name }}</h3>
 											
                                 <div class="patient-details">
+                                    <h5 class="mb-0">{{ $owner->phone }}</h5>
+                                </div>
+                                <div class="patient-details">
                                     <h5 class="mb-0">{{ $owner->address }}</h5>
                                 </div>
                             </div>
@@ -45,29 +48,35 @@
                     <div class="dashboard-widget">
                         <nav class="dashboard-menu">
                             <ul>
-                                <li class="active">
-                                    <a href="doctor-dashboard.html">
+                                <li class="{{ Request::is('owner_dashboard*') ? 'active' : '' }}">
+                                    <a href="{{route('owner_dashboard')}}">
                                         <i class="fas fa-columns"></i>
                                         <span>Dashboard</span>
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="appointments.html">
+                                <li class="{{ Request::is('owner_booking*') ? 'active' : '' }}">
+                                <a href="{{ route('owner.booking') }}">
                                         <i class="fas fa-calendar-check"></i>
                                         <span>Bookings</span>
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="my-patients.html">
+                                <li class="{{ Request::is('owner_court*') ? 'active' : '' }}">
+                                    <a href="{{ route('owner.court') }}">
                                         <i class="fas fa-user-injured"></i>
                                         <span>Courts</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="index-2.html">
-                                        <i class="fas fa-sign-out-alt"></i>
-                                        <span>Logout</span>
-                                    </a>
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                    onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();">
+                                     <i class="fas fa-sign-out-alt"></i>
+                                    {{ __('Logout') }}
+                                </a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
                                 </li>
                             </ul>
                         </nav>
@@ -118,7 +127,7 @@
                                         <div class="dash-widget">
                                             <div class="circle-bar circle-bar3">
                                                 <div class="circle-graph3" data-percent="50">
-                                                    <img src="assets/img/icon-03.png" class="img-fluid" alt="Patient">
+                                                <img src="{{asset('my_assets/frontend/assets/img/icon-03.png')}}" class="img-fluid" alt="Patient">
                                                 </div>
                                             </div>
                                             <div class="dash-widget-info">
@@ -133,7 +142,8 @@
                         </div>
                     </div>
                 </div>
-							
+
+				{{-- start --}}
                 <div class="row">
                     <div class="col-md-12">
                         <h4 class="mb-4">Patient Appoinment</h4>
@@ -518,7 +528,7 @@
                         </div>
                     </div>
                 </div>
-
+                {{-- end --}}
             </div>
         </div>
 

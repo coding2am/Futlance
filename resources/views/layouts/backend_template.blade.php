@@ -159,7 +159,7 @@
                     <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
                         <span class="user-img"><img class="rounded-circle"
                                 src="{{asset(Auth::user()->photo)}}" width="31"
-                                alt="Ryan Taylor"></sp{{asset(Auth::user()->photo)}}an>
+                                alt="Ryan Taylor">
                     </a>
                     <div class="dropdown-menu">
                         <div class="user-header">
