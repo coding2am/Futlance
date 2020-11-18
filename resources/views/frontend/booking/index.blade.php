@@ -9,7 +9,7 @@
                 <div class="col-md-12 col-12">
                     <nav aria-label="breadcrumb" class="page-breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="index-2.html">Home</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('homepage') }}">Home</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Booking</li>
                         </ol>
                     </nav>
@@ -40,38 +40,17 @@
 
                                     <!-- Booking Information -->
                                     <div class="info-widget">
+                                        {{-- point start  --}}
                                         <div>
                                             <div class="row">
                                                <div class="col-md-6">
-                                                <button type="button" class="btn btn-info my-2">
-                                                    Your Current point(s) : <span><i class="fas fa-coins mr-1"></i> <span> <span class="badge badge-light">{{$point}}</span>
-                                                </button>
-                                               </div>
-                                                <div class="card p-3 col-md-6">
-                                                    <h5 class="text-muted">Points</h5>
-                                                    <small class="text-muted">
-                                                        <ul>
-                                                            <li>You can get points by making booking.</li>
-                                                            <li>You can use that point as a payment.</li>
-                                                            <li>You can only spend that points for related courts.</li>
-                                                        </ul>
-                                                        <span>( We gave different points for differnet courts )</span>
-                                                    </small>
+                                                <div class="text-info my-2">
+                                                    <i class="fas fa-info-circle" data-toggle="tooltip" title="1000 points = 1000 mmk"></i>  Your Current point(s) : <span><span class="font-weight-bold">{{$point}}</span> <i class="fas fa-coins mr-1"></i> <span>
                                                 </div>
+                                               </div>
                                             </div>
                                         </div>
-
-                                        {{-- flash back message start--}}
-                                        @if (!empty(session()->get('success')))
-                                            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                                <strong class="mr-1">Success!</strong>{!! session()->get('success') !!}
-                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                        @endif
-                                        {{-- flash back message end--}}
-
+                                        {{-- point end  --}}
                                         {{-- flash back message start--}}
                                         @if (!empty(session()->get('error')))
                                             <div class="alert alert-danger alert-dismissible fade show" role="alert">

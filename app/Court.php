@@ -24,4 +24,11 @@ class Court extends Model
     {
         return $this->belongsTo('App\Quarter');
     }
+
+    public function users()
+    {
+        return $this->belongsToMany('App\User', 'court_user')
+            ->withPivot('count')
+            ->withTimestamps();
+    }
 }

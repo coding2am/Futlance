@@ -5,10 +5,11 @@ use Illuminate\Support\Facades\Route;
 
 //Frontend Controllers
 Route::get('/', 'FrontendController@index')->name('homepage');
+Route::get('/profile', 'FrontendController@profile')->name('profile');
 
 //Owner Route
 Route::group(['middleware'=>['owner']],function(){
-    Route::get('/owner_dashboard', 'BackendController@owner')->name('owner_dashboard');
+    Route::get('/owner_dashboard', 'OwnerController@index')->name('owner_dashboard');
 });
 
 //Admin Route
@@ -43,6 +44,8 @@ Route::resource('booking', 'BookingController');
 Route::post('storeBooking', 'BookingController@storeBooking')->name('storeBooking');
 Route::get('court_booking/{id}', 'BookingController@courtBooking')->name('court_booking');
 Route::get('checkout', 'BookingController@checkout')->name('checkout');
+Route::get('booking_success', 'BookingController@success')->name('booking.success');
+Route::get('booking_invoice/{id}', 'BookingController@viewInvoice')->name('booking.invoice');
 
 // laravel UI Package
 Auth::routes();
