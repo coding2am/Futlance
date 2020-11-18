@@ -33,4 +33,21 @@ class FrontendController extends Controller
         $user = User::find($user_id);
         return view('frontend.user.profile', compact('user'));
     }
+
+    // All Courts
+    public function court()
+    {
+        $cities = City::all();
+        $quarters = Quarter::all();
+        $courts = Court::all();
+        return view('frontend.court.index', compact('cities', 'quarters', 'courts'));
+    }
+    // Court Detail
+    public function courtDetail($id)
+    {
+        $court = Court::find($id);
+        return view('frontend.court.detail', compact('court'));
+    }
+
+
 }

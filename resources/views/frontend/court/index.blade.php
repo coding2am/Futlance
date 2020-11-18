@@ -14,55 +14,38 @@
         padding-left: 10px;
     }
 </style>
-<!-- Home Banner -->
-<section class="section section-search">
-    <div class="container-fluid">
-        <div class="banner-wrapper">
-            <div class="banner-header text-center">
-                <h1>Search Court, Make a Booking</h1>
-                <p>Discover the best futsal courts the city nearest to you.</p>
-            </div>
-                         
-            <!-- Search -->
-            {{-- <div class="search-box"> --}}
-                <div class="row p-0">
-                    <div class="col-md-4 mt-3">
-                        <select name="quarter" class="custom-select city">
-                            <optgroup label="Choose City">
-                                @foreach($cities as $city)
-                                <option value="{{ $city->id }}">{{ $city->name }}</option>
-                                @endforeach
-                                </optgroup>
-                        </select>
-                        <span class="form-text">Based on your City</span>
-                    </div>
-                    <div class="col-md-6 mt-3">
-                        <select name="quarter" class="custom-select quarter" disabled="true">
-                            <optgroup label="Choose Quarter" class="quarter_option">
-                                @foreach($quarters as $quarter)
-                                <option value="{{ $quarter->id }}">{{ $quarter->name }}</option>
-                                @endforeach
-                            </optgroup>
-                        </select>
-                    </div>
-                    <div class="col-md-2 mt-3">
-                        <button type="submit" class="btn btn-primary searchBtn"><i class="fas fa-search"></i> <span>Search</span></button>
-                    </div>
-                </div>
-            {{-- </div> --}}
-            <!-- /Search -->
-						
+
+ <div class="container">
+     <!-- Search -->
+     <div class="row p-0">
+        <div class="col-md-4 mt-3">
+            <select name="quarter" class="custom-select city">
+                <optgroup label="Choose City">
+                    @foreach($cities as $city)
+                    <option value="{{ $city->id }}">{{ $city->name }}</option>
+                    @endforeach
+                    </optgroup>
+            </select>
+            <span class="form-text">Based on your City</span>
+        </div>
+        <div class="col-md-6 mt-3">
+            <select name="quarter" class="custom-select quarter" disabled="true">
+                <optgroup label="Choose Quarter" class="quarter_option">
+                    @foreach($quarters as $quarter)
+                    <option value="{{ $quarter->id }}">{{ $quarter->name }}</option>
+                    @endforeach
+                </optgroup>
+            </select>
+        </div>
+        <div class="col-md-2 mt-3">
+            <button type="submit" class="btn btn-primary searchBtn"><i class="fas fa-search"></i> <span>Search</span></button>
         </div>
     </div>
-</section>
-<!-- /Home Banner -->
-
-<!-- Courts -->
-<div class="container filtered_courts">
-    {{-- <h1>Search result</h1> --}}
-    <div class="row mt-5 courts">
+    <!-- /Search -->
+    <!-- Courts -->
+    <div class="row mt-5">
         @foreach ($courts as $court)
-        <div class="col-md-3 col-sm-6">
+        <div class="col-md-3 col-sm-6 courts">
             <div class="profile-widget">
                 <div class="doc-img">
                     <a href="#">
@@ -109,10 +92,11 @@
         </div>
         @endforeach
     </div>
-</div>
-<!-- /Courts -->
+    <!-- /Courts -->
+ </div>
+
 @endsection
-@section('script')
+{{-- @section('script')
   <script type="text/javascript">
     $(document).ready(function () {
         // $('.filtered_courts').hide();
@@ -146,7 +130,6 @@
                 var html = "";
                 for(let row of response){
                 html+=`
-                <div class="col-md-4">
                     <div class="card" style="width: 18rem;">
                         <img src="${ row.photo }" class="card-img-top" alt="court photo">
                         <div class="card-body">
@@ -154,8 +137,7 @@
                             <p class="card-text">${ row.price_per_hour } Ks (per hour)</p>
                             <a href="court_booking/${ row.id }" class="btn btn-primary">Go somewhere</a>
                         </div>
-                        </div>
-                </div>`;
+                    </div>`;
                 }
                 $('.allCourts').hide();
                 $('.filtered_courts').show();
@@ -164,4 +146,4 @@
         })
     })
   </script>
-@endsection
+@endsection --}}

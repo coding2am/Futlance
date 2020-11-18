@@ -100,7 +100,7 @@
                         </ul>
                         <div class="row row-sm">
                             <div class="col-6">
-                                <a href="doctor-profile.html" class="btn view-btn">View</a>
+                                <a href="{{ route('court_detail', $court->id) }}" class="btn view-btn">View</a>
                             </div>
                             <div class="col-6">
                                 <a href="@if(Auth::user()) {{route('court_booking', $court->id)}} @else {{route('user.signin')}}  @endif" class="btn book-btn">Book Now</a>

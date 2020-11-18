@@ -6,11 +6,16 @@ use Illuminate\Support\Facades\Route;
 //Frontend Controllers
 Route::get('/', 'FrontendController@index')->name('homepage');
 Route::get('/profile', 'FrontendController@profile')->name('profile');
+Route::get('/courts', 'FrontendController@court')->name('court_page');
+Route::get('/court_detail/{id}', 'FrontendController@courtDetail')->name('court_detail');
 
 //Owner Route
 Route::group(['middleware'=>['owner']],function(){
     Route::get('/owner_dashboard', 'OwnerController@index')->name('owner_dashboard');
     Route::get('/owner_booking', 'OwnerController@booking')->name('owner.booking');
+    Route::get('/owner_booking_detail/{id}', 'OwnerController@bookingDetail')->name('owner.booking_detail');
+    Route::put('/owner_booking_confirm/{id}', 'OwnerController@bookingConfirm')->name('owner.booking_confirm');
+
     Route::get('/owner_court', 'OwnerController@court')->name('owner.court');
     Route::get('/owner_court_edit/{id}', 'OwnerController@courtEdit')->name('owner.court.edit');
     Route::get('/owner_court_create', 'OwnerController@courtCreate')->name('owner.court.create');

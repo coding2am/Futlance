@@ -37,11 +37,11 @@
                                 <h3>{{ $owner->name }}</h3>
 											
                                 <div class="patient-details">
-                                    <h5 class="mb-0">{{ $owner->phone }}</h5>
+                                    <h5 class="mb-0">{{ $owner->email }}</h5>
                                 </div>
-                                <div class="patient-details">
+                                {{-- <div class="patient-details mt-1">
                                     <h5 class="mb-0">{{ $owner->address }}</h5>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                     </div>
@@ -87,69 +87,176 @@
             </div>
 						
             <div class="col-md-7 col-lg-8 col-xl-9">
-                {{-- start --}}
-                <div class="table-responsive">
-                    {{-- <h3 class="text text-center text-info"></h3> --}}
-                    {{-- flash back message start--}}
-                    @if (!empty(session()->get('success')))
-                        <div class="alert alert-success alert-dismissible fade show" role="alert">
-                            <strong class="mr-1">Success!</strong>{!! session()->get('success') !!}
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
+                {{-- flash back message start--}}
+                @if (!empty(session()->get('success')))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong class="mr-1">Success!</strong>{!! session()->get('success') !!}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                @endif
+                {{-- flash back message end--}}
+                <nav>
+                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                        <a class="nav-link active" id="nav-pending-tab" data-toggle="tab" href="#nav-pending" role="tab" aria-controls="nav-pending" aria-selected="true"> Booking - Pending </a>
+                        <a class="nav-link" id="nav-confirm-tab" data-toggle="tab" href="#nav-confirm" role="tab" aria-controls="nav-confirm" aria-selected="false"> Booking - Confirm </a>
+                        <a class="nav-link" id="nav-cancel-tab" data-toggle="tab" href="#nav-cancel" role="tab" aria-controls="nav-cancel" aria-selected="false"> Booking - Cancel </a>
+                    </div>
+                </nav>
+                <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade show active py-4" id="nav-pending" role="tabpanel" aria-labelledby="nav-pending-tab">    
+                        <div class="table-responsive">
+                            <table class="table table-hover table-bordered display" >
+                                <thead>
+                                    <tr>
+                                        <th> # </th>
+                                        <th> Date </th>
+                                        <th> Booking No </th>
+                                        <th> Total </th>
+                                        <th> Status </th>
+                                        <th> Action </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @php
+                                    $num = 1;
+                                    @endphp
+                                    @foreach ($pending_bookings as $pending_booking)
+                                    <tr>
+                                        <td> {{ $num++  }}.</td>
+                                        <td> 
+                                            <div class="text-dark">{{ date_format(date_create($pending_booking->booking_date),"d-M-Y") }}</div>
+                                            <div class="row">
+                                                <div class="text-success col-md-5"><small>{{ date_format(date_create($pending_booking->start_time),"H:i A") }}</small></div>
+                                                <div class="text-success col-md-5"><small>{{ date_format(date_create($pending_booking->end_time),"H:i A") }}</small></div>
+                                            </div> 
+                                        </td>
+                                        <td> {{ $pending_booking->booking_no }} </td>
+                                        <td> {{ $pending_booking->total_amount }} MMK </td>
+                                        <th> 
+                                            @if ($pending_booking->status == 0)
+                                                <div>
+                                                   <p class="text-success">Pending</p>
+                                                </div>
+                                            @else
+                                                <div>
+                                                    <p class="text-success">Confirmed</p>
+                                                </div>
+                                            @endif
+                                        </th>
+                                        <td>
+                                            <a href="{{ route('owner.booking_detail', $pending_booking->id ) }}" class="btn btn-outline-info">
+                                                <i class="fas fa-info"></i>
+                                            </a>
+                                            <form method="post" action="{{route('owner.booking_confirm',$pending_booking->id)}}">
+                                                @csrf
+                                                @method('put')    
+                                                <button href="" type="submit" class="btn btn-outline-success d-inline">
+                                                <i class="fas fa-check"></i>
+                                                </button>
+                                            </form>
+
+                                            <a href="#" class="btn btn-outline-danger">
+                                                <i class="fas fa-times"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
                         </div>
-                    @endif
-                    {{-- flash back message end--}}
-                    <table class="datatable table table-hover table-center mb-0">
-                        <thead>
-                            @php
-                            $num = 1;
-                            @endphp
-                            <tr>
-                                <th>#</th>
-                                <th>Booking No</th>
-                                <th>Date</th>
-                                <th>Booking by</th>
-                                <th>Court</th>
-                                <th>Payment method</th>
-                                <th>Request booking at</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($ownBookings as $ownBooking)
-                                <tr>
-                                    <td>{{ $num++ }}</td>
-                                    <td>{{ $ownBooking->booking_no }}</td>
-                                    <td>
-                                        {{-- <td>{{ $booking->booking_date }} <span class="text-primary d-block">{{ $booking->start_time }} - {{ $booking->end_time }}</span></td> --}}
-                                        <div class="text-dark">{{ $ownBooking->booking_date }}</div>
-                                        <div class="row">
-                                            <div class="text-success col-md-4"><small>{{ $ownBooking->start_time }}</small></div>
-                                            <div class="text-success col-md-4"><small>{{ $ownBooking->end_time }}</small></div>
-                                        </div>
-                                    </td>
-                                    <td>{{ $ownBooking->user->name }}</td>
-                                    <td>{{ $ownBooking->court->name }}</td>
-                                    <td>{{ $ownBooking->paymentMethod->name }}</td>
-                                    <td>{{ $ownBooking->created_at->diffForHumans()}}</td>
-                                    <td>
-                                        @if ($ownBooking->status == 0)
+
+
+                    </div>
+                        
+                    <div class="tab-pane fade py-4" id="nav-confirm" role="tabpanel" aria-labelledby="nav-confirm-tab">
+                            
+                        <div class="table-responsive">
+                            <table class="table table-hover table-bordered display">
+                                <thead>
+                                    <tr>
+                                        <th> # </th>
+                                        <th> Date </th>
+                                        <th> Booking No </th>
+                                        <th> Total </th>
+                                        <th> Status </th>
+                                        <th> Action </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @php
+                                        $num = 1;
+                                    @endphp
+                                    @foreach ($confirmed_bookings as $confirmed_booking)
+                                    <tr>
+                                        <td> {{ $num++ }} </td>
+                                        <td> {{ $confirmed_booking->booking_date }} </td>
+                                        <td> {{ $confirmed_booking->booking_no }} </td>
+                                        <td> {{ $confirmed_booking->total_amount }} MMK</td>
+                                        <th> 
+                                            @if ($confirmed_booking->status == 0)
                                             <div>
                                                <p class="text-success">Pending</p>
                                             </div>
-                                        @else
-                                            <div>
-                                                <p class="text-success">Confirmed</p>
-                                            </div>
-                                        @endif
-                                    <td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                                            @else
+                                                <div>
+                                                    <p class="text-success">Confirmed</p>
+                                                </div>
+                                            @endif
+                                        </th>
+                                        <td>
+                                            <a href="{{ route('owner.booking_detail', $confirmed_booking->id) }}" class="btn btn-outline-info">
+                                                <i class="fas fa-info"></i>
+                                            </a>
+                                            <a href="#" class="btn btn-outline-danger">
+                                                <i class="fas fa-times"></i>
+                                            </a>
+                                        </td>
+
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                        
+                    <div class="tab-pane fade py-4" id="nav-cancel" role="tabpanel" aria-labelledby="nav-cancel-tab">
+                            
+                        <div class="table-responsive">
+                            <table class="table table-hover table-bordered display">
+                                <thead>
+                                    <tr>
+                                        <th> # </th>
+                                        <th> Date </th>
+                                        <th> Booking No </th>
+                                        <th> Total </th>
+                                        <th> Status </th>
+                                        <th> Action </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    
+                                    <tr>
+                                        <td>  </td>
+                                        <td>  </td>
+                                        <td>  </td>
+                                        <td>  </td>
+                                        <th> </th>
+                                        <td>
+                                            <a href="#" class="btn btn-outline-info">
+                                                <i class="fas fa-info"></i>
+                                            </a>
+                                        </td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
                 </div>
-                {{-- end --}}
             </div>    
         </div>
 
@@ -158,3 +265,9 @@
 </div>		
 <!-- /Page Content -->
 @endsection
+{{-- @section('script')
+<script type="text/javascript">
+    $('#sampleTable').DataTable();
+    $('table.display').DataTable();
+</script> 
+@endsection --}}

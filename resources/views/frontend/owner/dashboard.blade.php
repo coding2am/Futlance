@@ -37,11 +37,11 @@
                                 <h3>{{ $owner->name }}</h3>
 											
                                 <div class="patient-details">
-                                    <h5 class="mb-0">{{ $owner->phone }}</h5>
+                                    <h5 class="mb-0">{{ $owner->email }}</h5>
                                 </div>
-                                <div class="patient-details">
+                                {{-- <div class="patient-details mt-1">
                                     <h5 class="mb-0">{{ $owner->address }}</h5>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                     </div>
