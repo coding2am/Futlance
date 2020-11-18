@@ -147,7 +147,40 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // dd($request);
+
+        $request->validate([
+            'name' => 'required|min:2',
+            'phone' => 'required',
+            'email' => 'required',
+            'address' => 'required',
+        ]);
+
+        if($request->file())
+        {
+            if($request->oldphoto != "my_assets/frontend/assets/avaters/user.png")
+            {
+                unlink(public_path($request->oldphoto));
+            }
+            $fileName = time() . '_' . $request->newphoto->getClientOriginalName();
+            $filePath = $request->file('newphoto')->storeAs('user', $fileName, 'public');
+            $path = '/storage/' . $filePath;
+        }
+        else
+        {
+            $path = $request->oldphoto;
+        }
+       
+        $user = User::find($id);
+        $user->name = $request->name;
+        $user->photo = $path;
+        $user->phone = $request->phone;
+        $user->email = $request->email;
+        $user->address = $request->address;
+        $user->save();
+
+        return redirect()->route('profile')->with('success', 'Your changes has been saved!');
+      
     }
 
     /**

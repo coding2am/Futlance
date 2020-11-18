@@ -214,6 +214,7 @@ class BookingController extends Controller
         $request_date = strtotime($request->date); 
         $request_start_time = strtotime($request->start_time);
         $request_end_time =  strtotime($request->end_time);
+        $totalAmount = $request->total;
 
         //COURT CLOSE & OPEN TIME
         $court_close_time = strtotime(date("H:i",mktime(21,00)));
@@ -257,18 +258,20 @@ class BookingController extends Controller
                         $booking->start_time = $request->start_time;
                         $booking->end_time = $request->end_time;
                         $booking->note = $request->note;
+                        $booking->total_amount = $totalAmount;
                         $booking->user_id = $request->user_id;
                         $booking->court_id = $request->court_id;
                         $booking->payment_method_id = $request->paymentMethod;
 
                         $booking->save();
+                        $booking_id = $booking->id;
 
                         DB::table('court_user')->insert([
                             'user_id'=>$request->user_id,
                             'court_id'=>$request->court_id,
                             'count'=>$count,
                         ]);
-                        return redirect()->route('court_booking',$request->court_id)->with('success','Your Booking has been send. Please wait for the confirmation.');
+                        return redirect()->route('booking.success',compact('booking_id'));
                     }
                 }
             } 
@@ -280,4 +283,18 @@ class BookingController extends Controller
             }
         }
     }
+
+    public function success (Request $request)
+    {
+        $booking_id = $request->booking_id;
+        $booking = Booking::find($booking_id);
+        return view('frontend.booking.success',compact('booking'));
+    }
+
+    public function viewInvoice ($id)
+    {
+        $booking = Booking::find($id);
+        return view('frontend.booking.invoice',compact('booking'));
+    }
+
 }
