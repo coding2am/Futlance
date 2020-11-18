@@ -247,10 +247,24 @@
                                                     <span>Total</span>
                                                 <span class="total-cost summaryTotal">{{$court->price_per_hour}} MMK</span>
                                                 </li>
-                                                <li>
-                                                    <span>Pre-Paid Amount</span>
-                                                    <span class="total-cost summaryPrePaid">{{ ($court->price_per_hour) * 0.3 }} MMk</span>
-                                                </li>
+                                                @if(Auth::user())
+                                                    @if(Auth::user()->getRoleNames()[0] == "member")
+                                                    <del>
+                                                        <li>
+                                                            <span>Pre-Paid Amount</span>
+                                                            <span class="total-cost summaryPrePaid"> <del class="text-muted">{{ ($court->price_per_hour) * 0.3 }} MMK</del> </span>
+                                                        </li>
+                                                    </del>
+                                                    <li>
+                                                        <small class="text-info">You don't need to pay pre-paid becoz you are our lovely members.</small>
+                                                    </li>
+                                                    @else
+                                                    <li>
+                                                        <span>Pre-Paid Amount</span>
+                                                        <span class="total-cost summaryPrePaid"> <span>{{ ($court->price_per_hour) * 0.3 }} MMK</span> </span>
+                                                    </li>
+                                                    @endif
+                                                @endif
                                             </ul>
                                         </div>
                                     </div>

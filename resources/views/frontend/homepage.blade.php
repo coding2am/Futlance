@@ -13,14 +13,20 @@
         border-left: solid 5px #408bea;
         padding-left: 10px;
     }
+    .bgCard {
+        background: rgba(0,0,0,0.7);
+    }
+    .customTxt {
+        color:#6ae7ac;
+    }
 </style>
 <!-- Home Banner -->
 <section class="section section-search">
     <div class="container-fluid">
         <div class="banner-wrapper">
             <div class="banner-header text-center">
-                <h1>Search Court, Make a Booking</h1>
-                <p>Discover the best futsal courts the city nearest to you.</p>
+                <h1 class="customTxt bgCard">Search Court, Make a Booking</h1>
+                <p class="bgCard text-light col-md-8 offset-md-2">Discover the best futsal courts the city nearest to you.</p>
             </div>
                          
             <!-- Search -->

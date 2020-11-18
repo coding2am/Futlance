@@ -146,20 +146,27 @@
                                             @endif
                                         </th>
                                         <td>
-                                            <a href="{{ route('owner.booking_detail', $pending_booking->id ) }}" class="btn btn-outline-info">
-                                                <i class="fas fa-info"></i>
-                                            </a>
-                                            <form method="post" action="{{route('owner.booking_confirm',$pending_booking->id)}}">
-                                                @csrf
-                                                @method('put')    
-                                                <button href="" type="submit" class="btn btn-outline-success d-inline">
-                                                <i class="fas fa-check"></i>
-                                                </button>
-                                            </form>
-
-                                            <a href="#" class="btn btn-outline-danger">
-                                                <i class="fas fa-times"></i>
-                                            </a>
+                                            <div class="row offset-md-2">
+                                                <div class="mr-1">
+                                                    <a href="{{ route('owner.booking_detail', $pending_booking->id ) }}" class="btn btn-sm btn-info">
+                                                        <i class="fas fa-info"></i>
+                                                    </a>
+                                                </div>
+                                                <div class="mr-1">
+                                                    <form method="post" action="{{route('owner.booking_confirm',$pending_booking->id)}}">
+                                                        @csrf
+                                                        @method('put')    
+                                                        <button href="" type="submit" class="btn btn-sm btn-success">
+                                                        <i class="fas fa-check"></i>
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                                <div>
+                                                    <a href="#" class="btn btn-sm btn-danger">
+                                                        <i class="fas fa-times"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
                                         </td>
                                     </tr>
                                     @endforeach
