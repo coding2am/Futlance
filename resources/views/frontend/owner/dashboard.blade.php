@@ -101,9 +101,9 @@
                                                 </div>
                                             </div>
                                             <div class="dash-widget-info">
-                                                <h6>Total Patient</h6>
-                                                <h3>1500</h3>
-                                                <p class="text-muted">Till Today</p>
+                                                <h6>You Owed</h6>
+                                                <h3 class="text-info">{{count($owed_courts)}}</h3>
+                                                <p class="text-muted">Court(s) in our site</p>
                                             </div>
                                         </div>
                                     </div>
@@ -116,9 +116,9 @@
                                                 </div>
                                             </div>
                                             <div class="dash-widget-info">
-                                                <h6>Today Patient</h6>
-                                                <h3>160</h3>
-                                                <p class="text-muted">06, Nov 2019</p>
+                                                <h6>You have</h6>
+                                            <h3 class="text-info">{{ count($ownBookings) }}</h3>
+                                                <p class="text-muted">total booking</p>
                                             </div>
                                         </div>
                                     </div>
@@ -131,9 +131,9 @@
                                                 </div>
                                             </div>
                                             <div class="dash-widget-info">
-                                                <h6>Appoinments</h6>
-                                                <h3>85</h3>
-                                                <p class="text-muted">06, Apr 2019</p>
+                                                <h6>You got</h6>
+                                                <h3 class="text-info">{{ number_format($totalIncome) }} MMK</h3>
+                                                <p class="text-muted">income money</p>
                                             </div>
                                         </div>
                                     </div>
@@ -146,7 +146,7 @@
 				{{-- start --}}
                 <div class="row">
                     <div class="col-md-12">
-                        <h4 class="mb-4">Patient Appoinment</h4>
+                        <h4 class="mb-4">Bookings List</h4>
                         <div class="appointment-tab">
 									
                             <!-- Appointment Tab -->
@@ -170,9 +170,8 @@
                                                 <table class="table table-hover table-center mb-0">
                                                     <thead>
                                                         <tr>
-                                                            <th>Patient Name</th>
-                                                            <th>Appt Date</th>
-                                                            <th>Purpose</th>
+                                                            <th>Booking no</th>
+                                                            <th>Booking Date</th>
                                                             <th>Type</th>
                                                             <th class="text-center">Paid Amount</th>
                                                             <th></th>

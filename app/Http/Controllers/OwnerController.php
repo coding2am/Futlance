@@ -16,7 +16,26 @@ class OwnerController extends Controller
     {
         $owner_id = Auth::user()->id;
         $owner = User::find($owner_id);
-        return view('frontend.owner.dashboard', compact('owner'));
+        $bookings = Booking::all();
+
+        //courts data who posses owner
+        $own_courts = Court::where('user_id',$owner_id)->get('id');
+        $own_court_id = [];
+
+        foreach($own_courts as $own_court)
+        {
+            array_push($own_court_id,$own_court->id);
+        }
+        $ownBookings = Booking::whereIn('court_id',$own_court_id)->get();
+        $incomes = $ownBookings;
+
+        $totalIncome = 0;
+        foreach($incomes as $income)
+        {
+            $totalIncome += intval($income->total_amount);
+        }
+        $owed_courts = Court::where('user_id',$owner_id)->get();
+        return view('frontend.owner.dashboard', compact('owner','owed_courts','ownBookings','totalIncome'));
     }
     public function booking()
     {
