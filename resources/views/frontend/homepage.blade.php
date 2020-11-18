@@ -79,7 +79,6 @@
                             <a href="#">{{ $court->name }}</a> 
                             <i class="fas fa-check-circle verified"></i>
                         </h3>
-                        {{-- <p class="speciality">MDS - Periodontology and Oral Implantology, BDS</p> --}}
                         <div class="rating">
                             <i class="fas fa-star filled"></i>
                             <i class="fas fa-star filled"></i>
@@ -91,9 +90,9 @@
                             <li>
                                 <i class="fas fa-map-marker-alt"></i> {{ $court->quarter->name }}, {{ $court->quarter->city->name }}
                             </li>
-                            {{-- <li>
-                                <i class="far fa-clock"></i> Available on Fri, 22 Mar
-                            </li> --}}
+                            <li>
+                                <i class="far fa-clock"></i> Available on 6 Am to 9 Pm
+                            </li>
                             <li>
                                 <i class="far fa-money-bill-alt"></i> {{ $court->price_per_hour }} MMK
                                 <i class="fas fa-info-circle" data-toggle="tooltip" title="Price Per Hour"></i>
@@ -119,21 +118,10 @@
 <!-- /Popular Courts Section -->
 
 <!-- Courts -->
-<div class="container filtered_courts">
-    {{-- <h1>Search result</h1> --}}
+<div class="container-fluid filtered_courts mt-5">
+    <h1 class="left_border">Search Results</h1>
     <div class="row mt-5 courts">
-        @foreach ($courts as $court)
-        {{-- <div class="col-md-4">
-            <div class="card" style="width: 18rem;">
-                <img src="{{ asset($court->photo) }}" class="card-img-top" alt="court photo">
-                <div class="card-body">
-                  <h5 class="card-title">{{ $court->name }}</h5>
-                  <p class="card-text">{{ $court->price_per_hour }} Ks (per hour)</p>
-                  <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-              </div>
-        </div> --}}
-        @endforeach
+    {{-- filtered courts --}}
     </div>
 </div>
 <!-- /Courts -->
@@ -141,7 +129,7 @@
 @section('script')
   <script type="text/javascript">
     $(document).ready(function () {
-        // $('.filtered_courts').hide();
+        $('.filtered_courts').hide();
         $.ajaxSetup({
         headers: {
           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -171,16 +159,59 @@
             //   console.log(response);
                 var html = "";
                 for(let row of response){
+                // html+=`
+                // <div class="col-md-4">
+                //     <div class="card" style="width: 18rem;">
+                //         <img src="${ row.photo }" class="card-img-top" alt="court photo">
+                //         <div class="card-body">
+                //             <h5 class="card-title">${ row.name }</h5>
+                //             <p class="card-text">${ row.price_per_hour } Ks (per hour)</p>
+                //             <a href="court_booking/${ row.id }" class="btn btn-primary">Go somewhere</a>
+                //         </div>
+                //         </div>
+                // </div>`;
                 html+=`
-                <div class="col-md-4">
-                    <div class="card" style="width: 18rem;">
-                        <img src="${ row.photo }" class="card-img-top" alt="court photo">
-                        <div class="card-body">
-                            <h5 class="card-title">${ row.name }</h5>
-                            <p class="card-text">${ row.price_per_hour } Ks (per hour)</p>
-                            <a href="court_booking/${ row.id }" class="btn btn-primary">Go somewhere</a>
+                <div class="col-md-3 col-sm-6">
+                    <div class="profile-widget">
+                        <div class="doc-img">
+                            <a href="#">
+                                <img class="img-fluid courtImage" alt="Court Image" src="${ row.photo }">
+                            </a>
+                            <a href="javascript:void(0)" class="fav-btn">
+                                <i class="far fa-bookmark"></i>
+                            </a>
                         </div>
+                        <div class="pro-content">
+                            <h3 class="title">
+                                <a href="#">${ row.name }</a> 
+                                <i class="fas fa-check-circle verified"></i>
+                            </h3>
+                            <div class="rating">
+                                <i class="fas fa-star filled"></i>
+                                <i class="fas fa-star filled"></i>
+                                <i class="fas fa-star filled"></i>
+                                <i class="fas fa-star filled"></i>
+                                <i class="fas fa-star filled"></i>
+                            </div>
+                            <ul class="available-info">
+                                <li>
+                                    <i class="far fa-clock"></i> Available on 6 Am to 9 Pm
+                                </li>
+                                <li>
+                                    <i class="far fa-money-bill-alt"></i> ${ row.price_per_hour } MMK
+                                    <i class="fas fa-info-circle" data-toggle="tooltip" title="Price Per Hour"></i>
+                                </li>
+                            </ul>
+                            <div class="row row-sm">
+                                <div class="col-6">
+                                    <a href="doctor-profile.html" class="btn view-btn">View</a>
+                                </div>
+                                <div class="col-6">
+                                    <a href="@if(Auth::user()) {{route('court_booking', $court->id)}} @else {{route('user.signin')}}  @endif" class="btn book-btn">Book Now</a>
+                                </div>
+                            </div>
                         </div>
+                    </div>
                 </div>`;
                 }
                 $('.allCourts').hide();
