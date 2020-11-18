@@ -210,11 +210,11 @@
                                     
                                 <!-- Booking Doctor Info -->
                                 <div class="booking-doc-info">
-                                    <a href="doctor-profile.html" class="booking-doc-img">
+                                    <a href="{{ route('court_detail', $court->id) }}" class="booking-doc-img">
                                         <img src="{{ asset($court->photo) }}" alt="User Image">
                                     </a>
                                     <div class="booking-info">
-                                        <h4><a href="doctor-profile.html">{{ $court->name }}</a></h4>
+                                        <h4><a href="{{ route('court_detail', $court->id) }}">{{ $court->name }}</a></h4>
                                         <div class="rating">
                                             <i class="fas fa-star filled"></i>
                                             <i class="fas fa-star filled"></i>

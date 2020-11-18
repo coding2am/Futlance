@@ -1,5 +1,5 @@
 @extends('layouts.frontend_template')
-@section('title', 'Booking Invoice')
+@section('title','Booking Detail')
 @section('content')
 <!-- Breadcrumb -->
 <div class="breadcrumb-bar">
@@ -8,11 +8,11 @@
             <div class="col-md-12 col-12">
                 <nav aria-label="breadcrumb" class="page-breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ route('homepage') }}">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Invoice View</li>
+                        <li class="breadcrumb-item"><a href="{{route('homepage')}}">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
                     </ol>
                 </nav>
-                <h2 class="breadcrumb-title">Invoice View</h2>
+                <h2 class="breadcrumb-title">Dashboard</h2>
             </div>
         </div>
     </div>
@@ -24,7 +24,76 @@
     <div class="container-fluid">
 
         <div class="row">
-            <div class="col-lg-8 offset-lg-2">
+            <div class="col-md-5 col-lg-4 col-xl-3 theiaStickySidebar">
+							
+                <!-- Profile Sidebar -->
+                <div class="profile-sidebar">
+                    <div class="widget-profile pro-widget-content">
+                        <div class="profile-info-widget">
+                            <a href="#" class="booking-doc-img">
+                                <img src="{{ asset($owner->photo) }}" alt="User Image">
+                            </a>
+                            <div class="profile-det-info">
+                                <h3>{{ $owner->name }}</h3>
+											
+                                <div class="patient-details">
+                                    <h5 class="mb-0">{{ $owner->email }}</h5>
+                                </div>
+                                {{-- <div class="patient-details">
+                                    <h5 class="mb-0">{{ $owner->address }}</h5>
+                                </div> --}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dashboard-widget">
+                        <nav class="dashboard-menu">
+                            <ul>
+                                <li class="{{ Request::is('owner_dashboard*') ? 'active' : '' }}">
+                                    <a href="{{route('owner_dashboard')}}">
+                                        <i class="fas fa-columns"></i>
+                                        <span>Dashboard</span>
+                                    </a>
+                                </li>
+                                <li class="{{ Request::is('owner_booking*') ? 'active' : '' }}">
+                                <a href="{{ route('owner.booking') }}">
+                                        <i class="fas fa-calendar-check"></i>
+                                        <span>Bookings</span>
+                                    </a>
+                                </li>
+                                <li class="{{ Request::is('owner_court*') ? 'active' : '' }}">
+                                    <a href="{{ route('owner.court') }}">
+                                        <i class="fas fa-user-injured"></i>
+                                        <span>Courts</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                    onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();">
+                                     <i class="fas fa-sign-out-alt"></i>
+                                    {{ __('Logout') }}
+                                </a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                <!-- /Profile Sidebar -->
+							
+            </div>
+						
+            <div class="col-md-7 col-lg-8 col-xl-9">
+                <div class="card">
+                    <div class="card-body">
+                        <a href="{{ route('owner.booking') }}" class="btn btn-sm btn-info float-left mb-2">
+                            <i class="fas fa-arrow-left"></i>
+                        </a>
+                    </div>
+                </div>
                 <div class="invoice-content">
                     <div class="invoice-item">
                         <div class="row">

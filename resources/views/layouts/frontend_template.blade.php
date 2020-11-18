@@ -56,7 +56,7 @@
                             <a href="{{ route('homepage') }}">Home</a>
                         </li>
                         <li class="has-submenu">
-                            <a href="{{ route('homepage') }}">Courts</a>
+                            <a href="{{ route('court_page') }}">Courts</a>
                         </li>
                         <li class="has-submenu">
                             <a href="{{ route('homepage') }}">About us</a>
@@ -101,9 +101,10 @@
                                     <a class="dropdown-item" href="{{ url('/admin') }}">Admin Dashboard</a>
                                 @elseif(Auth::user()->getRoleNames()[0] == 'owner')
                                     <a class="dropdown-item" href="{{ route('owner_dashboard') }}">Owner Dashboard</a>
+                                @elseif(Auth::user()->getRoleNames()[0] == 'customer')
+                                    <a class="dropdown-item" href="{{ route('profile') }}">Profile</a>
+                                    <a class="dropdown-item" href="#">Booking History</a>
                                 @endif
-                                <a class="dropdown-item" href="{{ route('profile') }}">Profile</a>
-                                <a class="dropdown-item" href="#">Booking History</a>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
                                     document.getElementById('logout-form').submit();">
@@ -266,12 +267,15 @@
     <!-- /Main Wrapper -->
 
     <!-- jQuery -->
-    <script src="{{ asset('my_assets/frontend/assets/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('my_assets/frontend/assets/js/jquery-3.3.1.min.js') }}"></script>
 
     <!-- Bootstrap Core JS -->
     <script src="{{ asset('my_assets/frontend/assets/js/popper.min.js') }}"></script>
     <script src="{{ asset('my_assets/frontend/assets/js/bootstrap.min.js') }}"></script>
 
+    <!-- Data Tables -->
+    <script src="{{ asset('my_assets/frontend/assets/plugins/datatable/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('my_assets/frontend/assets/plugins/datatable/datatables.min.js') }}"></script>
     <!-- Slick JS -->
     <script src="{{ asset('my_assets/frontend/assets/js/slick.js') }}"></script>
 
