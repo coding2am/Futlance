@@ -152,12 +152,8 @@ class BookingController extends Controller
     {
         date_default_timezone_set('Asia/Yangon');
 
-        // dd($request)
-        // $message = strtotime('now');
-        // $minutes = ($end_time - $start_time) / 60;
-        // $sections = floor($minutes / 60);
         $start_time = strtotime($request->from);
-        $closeTime = strtotime(date("H:i",mktime(22,00)));
+        $closeTime = strtotime(date("H:i",mktime(21,00)));
         $openTime = strtotime(date("H:i",mktime(6,00)));
 
         if($start_time > $openTime || $start_time == $openTime)
@@ -204,26 +200,84 @@ class BookingController extends Controller
     // store Booking function
     public function storeBooking(Request $request)
     {
-        $count = $request->section;
-
-        $bookingno = 'BOK-'.time();
-        $booking = new Booking();
-        $booking->booking_no = $bookingno;
-        $booking->booking_date = $request->date;
-        $booking->start_time = $request->start_time;
-        $booking->end_time = $request->end_time;
-        $booking->note = $request->note;
-        $booking->user_id = $request->user_id;
-        $booking->court_id = $request->court_id;
-        $booking->payment_method_id = $request->paymentMethod;
-
-        $booking->save();
-
-        DB::table('court_user')->insert([
-            'user_id'=>$request->user_id,
-            'court_id'=>$request->court_id,
-            'count'=>$count,
+        //validate
+        $request->validate([
+            "date" => "required",
+            "start_time" => "required",
+            "end_time" => "required",
+            "paymentMethod" => "required",
         ]);
-        return redirect()->route('court_booking',$request->court_id)->with('success','Your Booking has been send. Please wait for the confirmation.');
+        
+        date_default_timezone_set('Asia/Yangon');
+
+        //SELECTING USER REQUEST DATE & TIME
+        $request_date = strtotime($request->date); 
+        $request_start_time = strtotime($request->start_time);
+        $request_end_time =  strtotime($request->end_time);
+
+        //COURT CLOSE & OPEN TIME
+        $court_close_time = strtotime(date("H:i",mktime(21,00)));
+        $court_open_time = strtotime(date("H:i",mktime(6,00)));
+
+        if ($request_date > strtotime('+7 day')) 
+        {
+            //CHECKING REQUEST DATE IS OVER 7 DAYS ?
+            return redirect()->route('court_booking',$request->court_id)->with('error','You can only booking within in 7days');
+        } 
+        else if ($request_date < strtotime('-1 day')) 
+        {
+            //CHECKING REQUEST DATE IS A PREVIOUS DATE ?
+            return redirect()->route('court_booking',$request->court_id)->with('error','Your request date is in the past');
+        } 
+        else 
+        {
+            //SUCCESS DATE VALIDATION AND START CHECKING TIME !
+            if($request_start_time > $court_open_time || $request_start_time == $court_open_time)
+            {
+               if($request_start_time > $court_close_time || $request_start_time == $court_close_time)
+               {
+                //OVER COURT CLOSED TIME CHECKING
+                return redirect()->route('court_booking',$request->court_id)->with('error','Sorry Booking are closed at 9:00 pm');
+                }
+                else
+                {
+                    //SUCCESS START TIME VALIDATION AND START, END TIME VALIDATION !
+                    if($request_end_time > $court_close_time)
+                    {
+                        return redirect()->route('court_booking',$request->court_id)->with('error','Sorry Booking are closed at 9:00 pm');
+                    }
+                    else
+                    {
+                        //SUCCESS END TIME VALIDATION AND START, INSERTING BOOKING !
+                        $count = $request->section;
+                        $bookingno = 'BOK-'.time();
+                        $booking = new Booking();
+                        $booking->booking_no = $bookingno;
+                        $booking->booking_date = $request->date;
+                        $booking->start_time = $request->start_time;
+                        $booking->end_time = $request->end_time;
+                        $booking->note = $request->note;
+                        $booking->user_id = $request->user_id;
+                        $booking->court_id = $request->court_id;
+                        $booking->payment_method_id = $request->paymentMethod;
+
+                        $booking->save();
+
+                        DB::table('court_user')->insert([
+                            'user_id'=>$request->user_id,
+                            'court_id'=>$request->court_id,
+                            'count'=>$count,
+                        ]);
+                        return redirect()->route('court_booking',$request->court_id)->with('success','Your Booking has been send. Please wait for the confirmation.');
+                    }
+                }
+            } 
+            else
+            {
+                //BEFORE COURT OPEN TIME CHECKING
+                return redirect()->route('court_booking',$request->court_id)->with('error','Sorry Booking were open at 6:00 am');
+                
+            }
+        }
     }
 }

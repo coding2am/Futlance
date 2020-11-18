@@ -11,7 +11,7 @@
                     <div class="account-content">
                         <div class="row align-items-center justify-content-center">
                             <div class="col-md-7 col-lg-6 login-left">
-                                <img src="{{ asset('my_assets/frontend/assets/img/login-banner.png') }}" class="img-fluid"
+                                <img src="{{ asset('my_assets/frontend/assets/futlance_design/4.svg') }}" class="img-fluid"
                                     alt="Login Banner">
                             </div>
                             <div class="col-md-12 col-lg-6 login-right">

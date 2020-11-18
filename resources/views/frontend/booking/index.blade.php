@@ -71,8 +71,24 @@
                                             </div>
                                         @endif
                                         {{-- flash back message end--}}
+
+                                        {{-- flash back message start--}}
+                                        @if (!empty(session()->get('error')))
+                                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                                <strong class="mr-1">Booking Error !</strong>{!! session()->get('error') !!}
+                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                        @endif
+                                        {{-- flash back message end--}}
                                         
                                         <h4 class="card-title">Booking Information</h4>
+                                        @if($errors->any())
+                                            @foreach ($errors->all() as $error)
+                                                 <div class="text-danger"> *{{ $error }}</div>
+                                             @endforeach
+                                        @endif
                                         <div class="row">
                                             <div class="col-md-12 col-sm-12">
                                                 <div class="form-group card-label">
@@ -100,12 +116,22 @@
                                                     <label>From</label>
                                                     <input id="from" name="start_time" type="time" class="form-control time" disabled>
                                                 </div>
+                                                @error('from')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
                                             </div>
                                             <div class="col-md-6 col-sm-12">
                                                 <div class="form-group card-label">
                                                     <label>To</label>
                                                     <input id="to" name="end_time" type="time" class="form-control time" disabled>
                                                 </div>
+                                                @error('to')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
                                             </div>
                                             {{-- time error message start--}}
                                             <div class="col-md-12">
@@ -248,16 +274,6 @@
                                                 </li>
                                             </ul>
                                         </div>
-                                        {{-- flash back message start--}}
-                                        @if (!empty(session()->get('success')))
-                                            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                                <strong class="mr-1">Success!</strong>{!! session()->get('success') !!}
-                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                        @endif
-                                        {{-- flash back message end--}}
                                     </div>
                                 </div>
                             </div>
@@ -293,7 +309,7 @@
                 let html = "";
                 for (let row of response) {
                     html +=
-                        `<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        `<div class="alert alert-info alert-dismissible fade show" role="alert">
                             <strong class="mr-1">Already Taken Sections!</strong>${row.start_time} -- ${row.end_time}
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
