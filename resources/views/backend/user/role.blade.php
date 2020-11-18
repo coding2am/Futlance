@@ -38,7 +38,7 @@
                             <form method="post" action="{{ route('user.roleUpdate', $user->id) }}">
                                 @csrf
                                 @method('put')
-                                <div class="row no-gutters">
+                                <div class="row">
                                     <div class="form-group col-md-6">
                                         <select name="role" id="role" class="form-control">
                                             @foreach ($roles as $role)

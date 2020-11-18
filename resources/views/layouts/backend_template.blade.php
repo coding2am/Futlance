@@ -208,14 +208,14 @@
                             <a href="{{ route('booking.index') }}"><i class="fe fe-layout"></i>
                                 <span>Bookings</span></a>
                         </li>
-                        <li class="{{ Request::is('member*') ? 'active' : '' }}">
-                            <a href="{{ route('user.member') }}"><i class="fe fe-users"></i> <span>Members</span></a>
-                        </li>
-                        <li class="{{ Request::is('owner*') ? 'active' : '' }}">
-                            <a href="{{ route('user.owner') }}"><i class="fe fe-users"></i> <span>Owners</span></a>
-                        </li>
-                        <li class="{{ Request::is('user*') ? 'active' : '' }}">
-                            <a href="{{ route('user.index') }}"><i class="fe fe-users"></i> <span>Customers</span></a>
+                        {{-- Users --}}
+                        <li class="submenu">
+                            <a href="{{ route('user.index') }}"><i class="fe fe-users"></i> <span> Users </span> <span class="menu-arrow"></span></a>
+                            <ul style="display: none;">
+                                <li><a href="{{ route('user.index') }}">Customers</a></li>
+                                <li><a href="{{ route('user.member') }}">Members</a></li>
+                                <li><a href="{{ route('user.owner') }}">Owners</a></li>
+                            </ul>
                         </li>
                         <li class="{{ Request::is('city*') ? 'active' : '' }}">
                             <a href="{{ route('city.index') }}"><i class="fe fe-map"></i> <span>Cities</span></a>
