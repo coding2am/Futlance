@@ -100,7 +100,7 @@ class BookingController extends Controller
             // $counts = DB::table('court_user')->where('user_id',$current_user_id)->get('count');
             foreach($counts as $count)
             {
-                $point += (intval($count->count)) * 100;
+                $point += (intval($count->count)) * 1000;
             }
         }
 
