@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Court;
 use App\Booking;
+use Illuminate\Support\Facades\DB;
 
 class BackendController extends Controller
 {
@@ -13,8 +14,8 @@ class BackendController extends Controller
     {
         $courts = Court::all();
         $users = User::all();
-        $fiveUsers = User::all()->random(5);
-        $fiveCourts = Court::all()->random(5);
+        $fiveUsers = DB::table('users')->limit(5)->get();
+        $fiveCourts =  DB::table('courts')->limit(5)->get();
         $bookings = Booking::all();
         return view('backend.index',compact('users','courts','bookings','fiveUsers','fiveCourts'));
     }
