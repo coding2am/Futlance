@@ -62,7 +62,7 @@
                                 </li>
                                 <li class="{{ Request::is('owner_court*') ? 'active' : '' }}">
                                     <a href="{{ route('owner.court') }}">
-                                        <i class="fas fa-user-injured"></i>
+                                        <i class="fas fa-list-ol"></i>
                                         <span>Courts</span>
                                     </a>
                                 </li>
@@ -152,7 +152,7 @@
                             <!-- Appointment Tab -->
                             <ul class="nav nav-tabs nav-tabs-solid nav-tabs-rounded">
                                 <li class="nav-item">
-                                    <a class="nav-link active" href="#upcoming-appointments" data-toggle="tab">Upcoming</a>
+                                    <a class="nav-link active" href="#upcoming-appointments" data-toggle="tab">Recent</a>
                                 </li>
                             </ul>
                             <!-- /Appointment Tab -->

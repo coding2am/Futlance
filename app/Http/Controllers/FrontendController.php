@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Booking;
 use App\City;
 use App\Court;
 use App\Quarter;
@@ -34,6 +35,13 @@ class FrontendController extends Controller
         return view('frontend.user.profile', compact('user'));
     }
 
+    public function bookingHistory()
+    {
+        $user_id = Auth::user()->id;
+        $bookings = Booking::where('user_id', $user_id)->get();
+        return view('frontend.user.booking', compact('bookings'));
+    }
+
     // All Courts
     public function court()
     {
@@ -47,6 +55,11 @@ class FrontendController extends Controller
     {
         $court = Court::find($id);
         return view('frontend.court.detail', compact('court'));
+    }
+
+    public function blog()
+    {
+        return view('frontend.blog.index');
     }
 
 

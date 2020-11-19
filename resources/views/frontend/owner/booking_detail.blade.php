@@ -62,7 +62,7 @@
                                 </li>
                                 <li class="{{ Request::is('owner_court*') ? 'active' : '' }}">
                                     <a href="{{ route('owner.court') }}">
-                                        <i class="fas fa-user-injured"></i>
+                                        <i class="fas fa-list-ol"></i>
                                         <span>Courts</span>
                                     </a>
                                 </li>

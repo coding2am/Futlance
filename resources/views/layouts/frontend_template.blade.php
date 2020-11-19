@@ -16,6 +16,9 @@
 
     <!-- Main CSS -->
     <link rel="stylesheet" href="{{ asset('my_assets/frontend/assets/css/style.css') }}">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ asset('my_assets/frontend/assets/css/custom.css') }}">
 
 </head>
 
@@ -65,7 +68,7 @@
                             <a href="{{ route('homepage') }}">Contact</a>
                         </li>
                         <li class="has-submenu">
-                            <a href="{{ route('homepage') }}">Blog</a>
+                            <a href="{{ route('blog') }}">Blog</a>
                         </li>
                         {{-- mobile btn --}}
                         <li class="login-link">
@@ -104,7 +107,7 @@
                                     <a class="dropdown-item" href="{{ route('owner_dashboard') }}">Owner Dashboard</a>
                                 @elseif(Auth::user()->getRoleNames()[0] == 'customer')
                                     <a class="dropdown-item" href="{{ route('profile') }}">Profile</a>
-                                    <a class="dropdown-item" href="#">Booking History</a>
+                                    <a class="dropdown-item" href="{{ route('booking_history') }}">Booking History</a>
                                 @endif
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();

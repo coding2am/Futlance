@@ -62,7 +62,7 @@
                                 </li>
                                 <li class="{{ Request::is('owner_court*') ? 'active' : '' }}">
                                     <a href="{{ route('owner.court') }}">
-                                        <i class="fas fa-user-injured"></i>
+                                        <i class="fas fa-list-ol"></i>
                                         <span>Courts</span>
                                     </a>
                                 </li>
@@ -197,7 +197,7 @@
                                     @endphp
                                     @foreach ($confirmed_bookings as $confirmed_booking)
                                     <tr>
-                                        <td> {{ $num++ }} </td>
+                                        <td> {{ $num++ }}. </td>
                                         <td> {{ $confirmed_booking->booking_date }} </td>
                                         <td> {{ $confirmed_booking->booking_no }} </td>
                                         <td> {{ $confirmed_booking->total_amount }} MMK</td>

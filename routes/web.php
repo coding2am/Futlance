@@ -6,8 +6,10 @@ use Illuminate\Support\Facades\Route;
 //Frontend Controllers
 Route::get('/', 'FrontendController@index')->name('homepage');
 Route::get('/profile', 'FrontendController@profile')->name('profile');
+Route::get('/booking_history', 'FrontendController@bookingHistory')->name('booking_history');
 Route::get('/courts', 'FrontendController@court')->name('court_page');
 Route::get('/court_detail/{id}', 'FrontendController@courtDetail')->name('court_detail');
+Route::get('/blog', 'FrontendController@blog')->name('blog');
 
 //Owner Route
 Route::group(['middleware'=>['owner']],function(){

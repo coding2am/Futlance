@@ -68,7 +68,7 @@
                             </a>
                         </div>
                         <div class="clinic-booking">
-                            <a class="apt-btn" href="{{ route('court_booking', $court->id) }}">Book Appointment</a>
+                            <a class="apt-btn" href="{{ route('court_booking', $court->id) }}">Book Court</a>
                         </div>
                     </div>
                 </div>

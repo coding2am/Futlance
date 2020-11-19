@@ -17,7 +17,7 @@
 
  <div class="container">
      <!-- Search -->
-     <div class="row p-0">
+     <div class="row p-0 mt-5">
         <div class="col-md-4 mt-3">
             <select name="quarter" class="custom-select city">
                 <optgroup label="Choose City">
@@ -43,9 +43,10 @@
     </div>
     <!-- /Search -->
     <!-- Courts -->
-    <div class="row mt-5">
+    <h1 class="left_border mt-5 allCourts">Futsal Courts</h1>
+    <div class="row mt-5 allCourts">
         @foreach ($courts as $court)
-        <div class="col-md-3 col-sm-6 courts">
+        <div class="col-md-3 col-sm-6">
             <div class="profile-widget">
                 <div class="doc-img">
                     <a href="#">
@@ -93,13 +94,22 @@
         @endforeach
     </div>
     <!-- /Courts -->
- </div>
+</div>
+
+<!-- Search Courts -->
+<div class="container filtered_courts mt-5">
+    <h1 class="left_border">Search Results</h1>
+    <div class="row mt-5 courts">
+    {{-- filtered courts --}}
+    </div>
+</div>
+<!-- /Search Courts -->
 
 @endsection
-{{-- @section('script')
+@section('script')
   <script type="text/javascript">
     $(document).ready(function () {
-        // $('.filtered_courts').hide();
+        $('.filtered_courts').hide();
         $.ajaxSetup({
         headers: {
           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -130,14 +140,48 @@
                 var html = "";
                 for(let row of response){
                 html+=`
-                    <div class="card" style="width: 18rem;">
-                        <img src="${ row.photo }" class="card-img-top" alt="court photo">
-                        <div class="card-body">
-                            <h5 class="card-title">${ row.name }</h5>
-                            <p class="card-text">${ row.price_per_hour } Ks (per hour)</p>
-                            <a href="court_booking/${ row.id }" class="btn btn-primary">Go somewhere</a>
+                <div class="col-md-3 col-sm-6">
+                    <div class="profile-widget">
+                        <div class="doc-img">
+                            <a href="#">
+                                <img class="img-fluid courtImage" alt="Court Image" src="${ row.photo }">
+                            </a>
+                            <a href="javascript:void(0)" class="fav-btn">
+                                <i class="far fa-bookmark"></i>
+                            </a>
                         </div>
-                    </div>`;
+                        <div class="pro-content">
+                            <h3 class="title">
+                                <a href="#">${ row.name }</a> 
+                                <i class="fas fa-check-circle verified"></i>
+                            </h3>
+                            <div class="rating">
+                                <i class="fas fa-star filled"></i>
+                                <i class="fas fa-star filled"></i>
+                                <i class="fas fa-star filled"></i>
+                                <i class="fas fa-star filled"></i>
+                                <i class="fas fa-star filled"></i>
+                            </div>
+                            <ul class="available-info">
+                                <li>
+                                    <i class="far fa-clock"></i> Available on 6 Am to 9 Pm
+                                </li>
+                                <li>
+                                    <i class="far fa-money-bill-alt"></i> ${ row.price_per_hour } MMK
+                                    <i class="fas fa-info-circle" data-toggle="tooltip" title="Price Per Hour"></i>
+                                </li>
+                            </ul>
+                            <div class="row row-sm">
+                                <div class="col-6">
+                                    <a href="/court_detail/${ row.id }" class="btn view-btn">View</a>
+                                </div>
+                                <div class="col-6">
+                                    <a href="@if(Auth::user()) /court_booking/${ row.id } @else {{route('user.signin')}}  @endif" class="btn book-btn">Book Now</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>`;
                 }
                 $('.allCourts').hide();
                 $('.filtered_courts').show();
@@ -146,4 +190,4 @@
         })
     })
   </script>
-@endsection --}}
+@endsection

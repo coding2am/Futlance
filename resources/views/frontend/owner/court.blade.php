@@ -62,7 +62,7 @@
                                 </li>
                                 <li class="{{ Request::is('owner_court*') ? 'active' : '' }}">
                                     <a href="{{ route('owner.court') }}">
-                                        <i class="fas fa-user-injured"></i>
+                                        <i class="fas fa-list-ol"></i>
                                         <span>Courts</span>
                                     </a>
                                 </li>
@@ -109,8 +109,8 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Name</th>
+                                        <th>City</th>
                                         <th>Quarter</th>
-                                        <th>Owner</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -120,7 +120,7 @@
                                     @endphp
                                     @foreach ($courts as $court)
                                         <tr>
-                                            <td>{{ $i++ }}</td>
+                                            <td>{{ $i++ }}.</td>
                                             <td>
                                                 <h2 class="table-avatar">
                                                 <a href="{{route('court.show',$court->id)}}" class="avatar avatar-sm mr-2"><img
@@ -129,8 +129,8 @@
                                                             alt="Court Image">{{ substr($court->name,0,10) }}</a>
                                                 </h2>
                                             </td>
+                                            <td>{{ $court->quarter->city->name }}</td>
                                             <td>{{ $court->quarter->name }}</td>
-                                            <td>{{ $court->user->name }}</td>
                                             <td>
                                                 <div class="btn-group btn-group-sm" role="group" aria-label="...">
                                                     <a href="{{ route('owner.court.edit', $court->id) }}"

@@ -42,8 +42,8 @@
                             <div class="col ml-md-n2 profile-user-info">
                                 <h4 class="user-name mb-0">{{ $user->name }}</h4>
                                 <h6 class="text-muted">{{ $user->email }}</h6>
-                                <h6 class="text-muted">{{ $user->phone }}</h6>
-                                <div class="user-Location"><i class="fa fa-map-marker"></i> {{$user->address}}</div>
+                                {{-- <h6 class="text-muted">{{ $user->phone }}</h6> --}}
+                                <div class="user-Location"><i class="fa fa-map-marker-alt"></i> {{$user->address}}</div>
                             </div>
                             <div class="col-auto profile-btn">
                                 <div class="col-xl-1 col-lg-1 col-md-12 col-sm-12 col-12 order-xl-3 order-lg-3 order-md-2 order-sm-2 order-2">
