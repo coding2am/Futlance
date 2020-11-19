@@ -55,21 +55,18 @@
                         </a>
                     </div>
                     <ul class="main-nav">
-                        <li class="has-submenu">
+                        <li class="has-submenu {{ Request::is('/') ? 'active' : '' }}">
                             <a href="{{ route('homepage') }}">Home</a>
                         </li>
-                        <li class="has-submenu">
-                            <a href="{{ route('court_page') }}">Courts</a>
+                        <li class="has-submenu {{ Request::is('courts') ? 'active' : '' }}">
+                            <a href="{{ route('court_page') }}">Court</a>
                         </li>
-                        <li class="has-submenu">
-                            <a href="{{ route('homepage') }}">About us</a>
-                        </li>
-                        <li class="has-submenu">
-                            <a href="{{ route('homepage') }}">Contact</a>
-                        </li>
-                        <li class="has-submenu">
+                        <li class="has-submenu {{ Request::is('blog') ? 'active' : '' }}">
                             <a href="{{ route('blog') }}">Blog</a>
                         </li>
+                        <li class="has-submenu {{ Request::is('about') ? 'active' : '' }}">
+                            <a href="{{ route('about') }}">About</a>
+                        </li>                        
                         {{-- mobile btn --}}
                         <li class="login-link">
                             <a href="{{ route('user.signin') }}">Login / Signup</a>
@@ -177,11 +174,10 @@
                             <div class="footer-widget footer-menu">
                                 <h2 class="footer-title">For Customers</h2>
                                 <ul>
-                                    <li><a href="search.html">Search Courts</a></li>
-                                    <li><a href="login.html">Login</a></li>
-                                    <li><a href="register.html">Register</a></li>
-                                    <li><a href="booking.html">Booking</a></li>
-                                    <li><a href="patient-dashboard.html">Customer Dashboard</a></li>
+                                    <li><a href="{{ route('court_page') }}">Search Courts</a></li>
+                                    <li><a href="{{ route('user.signin') }}">Login</a></li>
+                                    <li><a href="{{ route('user.create') }}">Register</a></li>
+                                    <li><a href="{{ route('booking_history') }}">Booking History</a></li>
                                 </ul>
                             </div>
                             <!-- /Footer Widget -->
@@ -194,10 +190,10 @@
                             <div class="footer-widget footer-menu">
                                 <h2 class="footer-title">For Owner</h2>
                                 <ul>
-                                    <li><a href="appointments.html">Booking</a></li>
-                                    <li><a href="login.html">Login</a></li>
-                                    <li><a href="doctor-register.html">Register</a></li>
-                                    <li><a href="doctor-dashboard.html">Owner Dashboard</a></li>
+                                    <li><a href="{{ route('owner.booking') }}">Booking</a></li>
+                                    <li><a href="{{ route('user.signin') }}">Login</a></li>
+                                    <li><a href="{{ route('user.owner_register') }}">Register</a></li>
+                                    <li><a href="{{ route('owner_dashboard') }}">Owner Dashboard</a></li>
                                 </ul>
                             </div>
                             <!-- /Footer Widget -->
@@ -250,8 +246,8 @@
                                 <!-- Copyright Menu -->
                                 <div class="copyright-menu">
                                     <ul class="policy-menu">
-                                        <li><a href="term-condition.html">Terms and Conditions</a></li>
-                                        <li><a href="privacy-policy.html">Policy</a></li>
+                                        <li><a href="#">Terms and Conditions</a></li>
+                                        <li><a href="#">Policy</a></li>
                                     </ul>
                                 </div>
                                 <!-- /Copyright Menu -->

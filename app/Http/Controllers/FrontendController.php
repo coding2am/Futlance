@@ -62,5 +62,10 @@ class FrontendController extends Controller
         return view('frontend.blog.index');
     }
 
+    public function about()
+    {
+        return view('frontend.aboutpage');
+    }
+
 
 }

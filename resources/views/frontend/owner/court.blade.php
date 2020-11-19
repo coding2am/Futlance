@@ -54,6 +54,12 @@
                                         <span>Dashboard</span>
                                     </a>
                                 </li>
+                                <li class="{{ Request::is('owner_profile*') ? 'active' : '' }}">
+                                    <a href="{{route('owner_profile')}}">
+                                        <i class="fas fa-user"></i>
+                                        <span>Profile</span>
+                                    </a>
+                                </li>
                                 <li class="{{ Request::is('owner_booking*') ? 'active' : '' }}">
                                 <a href="{{ route('owner.booking') }}">
                                         <i class="fas fa-calendar-check"></i>

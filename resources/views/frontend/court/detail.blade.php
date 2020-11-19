@@ -54,16 +54,16 @@
                             </ul>
                         </div>
                         <div class="doctor-action">
-                            <a href="javascript:void(0)" class="btn btn-white call-btn">
+                            <a href="#" class="btn btn-white call-btn">
                                 <i class="fab fa-facebook-f"></i>
                             </a>
-                            <a href="chat.html" class="btn btn-white msg-btn">
+                            <a href="#" class="btn btn-white msg-btn">
                                 <i class="fab fa-instagram"></i>
                             </a>
-                            <a href="javascript:void(0)" class="btn btn-white call-btn" data-toggle="modal" data-target="#voice_call">
+                            <a href="#" class="btn btn-white call-btn" data-toggle="modal" data-target="#voice_call">
                                 <i class="fab fa-twitter"></i>
                             </a>
-                            <a href="javascript:void(0)" class="btn btn-white call-btn" data-toggle="modal" data-target="#video_call">
+                            <a href="#" class="btn btn-white call-btn" data-toggle="modal" data-target="#video_call">
                                 <i class="fab fa-instagram"></i>
                             </a>
                         </div>

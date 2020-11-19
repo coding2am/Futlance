@@ -77,7 +77,7 @@
                     @foreach ($courts as $court)
                     <div class="profile-widget">
                         <div class="doc-img">
-                            <a href="#">
+                            <a href="{{ route('court_detail', $court->id) }}">
                                 <img class="img-fluid courtImage" alt="User Image" src="{{ asset($court->photo) }}">
                             </a>
                             <a href="javascript:void(0)" class="fav-btn">
@@ -86,7 +86,7 @@
                         </div>
                         <div class="pro-content">
                             <h3 class="title">
-                                <a href="#">{{ $court->name }}</a> 
+                                <a href="{{ route('court_detail', $court->id) }}">{{ $court->name }}</a> 
                                 <i class="fas fa-check-circle verified"></i>
                             </h3>
                             <div class="rating">
@@ -218,7 +218,7 @@
             </div>
         </div>
         <div class="view-all text-center"> 
-            <a href="blog-list.html" class="btn btn-primary">View All</a>
+            <a href="{{ route('blog') }}" class="btn btn-primary">View All</a>
         </div>
     </div>
 </section>
@@ -271,7 +271,7 @@
                 <div class="col-md-3 col-sm-6">
                     <div class="profile-widget">
                         <div class="doc-img">
-                            <a href="#">
+                            <a href="/court_detail/${ row.id }">
                                 <img class="img-fluid courtImage" alt="Court Image" src="${ row.photo }">
                             </a>
                             <a href="javascript:void(0)" class="fav-btn">
@@ -280,7 +280,7 @@
                         </div>
                         <div class="pro-content">
                             <h3 class="title">
-                                <a href="#">${ row.name }</a> 
+                                <a href="/court_detail/${ row.id }">${ row.name }</a> 
                                 <i class="fas fa-check-circle verified"></i>
                             </h3>
                             <div class="rating">

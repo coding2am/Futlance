@@ -38,6 +38,13 @@ class OwnerController extends Controller
         return view('frontend.owner.dashboard', compact('owner','owed_courts','ownBookings','totalIncome'));
     }
 
+    public function profile()
+    {
+        $owner_id = Auth::user()->id;
+        $owner = User::find($owner_id);
+        return view('frontend.owner.profile', compact('owner'));
+    }
+
     public function booking()
     {
         $owner_id = Auth::user()->id;
@@ -54,10 +61,12 @@ class OwnerController extends Controller
         }
         $ownBookings = Booking::whereIn('court_id',$own_court_id)->get();
         // dd($ownBookings[0]->status);
-        $pending_bookings = $ownBookings->where('status',0);
+        $pending_bookings = $ownBookings->where('status', 0);
         // dd($pending_bookings);
-        $confirmed_bookings = $ownBookings->where('status',1);
-        return view('frontend.owner.booking', compact('pending_bookings','confirmed_bookings','owner'));
+        $confirmed_bookings = $ownBookings->where('status', 1);
+
+        $canceled_bookings = $ownBookings->where('status', 2);
+        return view('frontend.owner.booking', compact('pending_bookings','confirmed_bookings', 'canceled_bookings','owner'));
     }
 
     public function bookingDetail($id)
@@ -77,6 +86,14 @@ class OwnerController extends Controller
         return redirect()->back();
     }
 
+    public function bookingCancel($id)
+    {
+        $booking = Booking::find($id);
+        $booking->status = 2;
+        $booking->save();
+        return redirect()->back();
+    }
+    
     public function court()
     {
         $owner_id = Auth::user()->id;

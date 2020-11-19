@@ -54,6 +54,12 @@
                                         <span>Dashboard</span>
                                     </a>
                                 </li>
+                                <li class="{{ Request::is('owner_profile*') ? 'active' : '' }}">
+                                    <a href="{{route('owner_profile')}}">
+                                        <i class="fas fa-user"></i>
+                                        <span>Profile</span>
+                                    </a>
+                                </li>
                                 <li class="{{ Request::is('owner_booking*') ? 'active' : '' }}">
                                 <a href="{{ route('owner.booking') }}">
                                         <i class="fas fa-calendar-check"></i>
@@ -128,8 +134,8 @@
                                         <td> 
                                             <div class="text-dark">{{ date_format(date_create($pending_booking->booking_date),"d-M-Y") }}</div>
                                             <div class="row">
-                                                <div class="text-success col-md-5"><small>{{ date_format(date_create($pending_booking->start_time),"H:i A") }}</small></div>
-                                                <div class="text-success col-md-5"><small>{{ date_format(date_create($pending_booking->end_time),"H:i A") }}</small></div>
+                                                <div class="text-success col-md-5"><small>{{ date_format(date_create($pending_booking->start_time),"h:i A") }}</small></div>
+                                                <div class="text-success col-md-5"><small>{{ date_format(date_create($pending_booking->end_time),"h:i A") }}</small></div>
                                             </div> 
                                         </td>
                                         <td> {{ $pending_booking->booking_no }} </td>
@@ -137,18 +143,14 @@
                                         <th> 
                                             @if ($pending_booking->status == 0)
                                                 <div>
-                                                   <p class="text-success">Pending</p>
-                                                </div>
-                                            @else
-                                                <div>
-                                                    <p class="text-success">Confirmed</p>
+                                                   <p class="text-warning">Pending</p>
                                                 </div>
                                             @endif
                                         </th>
                                         <td>
                                             <div class="row offset-md-2">
                                                 <div class="mr-1">
-                                                    <a href="{{ route('owner.booking_detail', $pending_booking->id ) }}" class="btn btn-sm btn-info">
+                                                    <a href="{{ route('owner.booking_detail', $pending_booking->id ) }}" class="btn btn-outline-info">
                                                         <i class="fas fa-info"></i>
                                                     </a>
                                                 </div>
@@ -156,15 +158,19 @@
                                                     <form method="post" action="{{route('owner.booking_confirm',$pending_booking->id)}}">
                                                         @csrf
                                                         @method('put')    
-                                                        <button href="" type="submit" class="btn btn-sm btn-success">
+                                                        <button type="submit" class="btn btn-outline-success">
                                                         <i class="fas fa-check"></i>
                                                         </button>
                                                     </form>
                                                 </div>
                                                 <div>
-                                                    <a href="#" class="btn btn-sm btn-danger">
-                                                        <i class="fas fa-times"></i>
-                                                    </a>
+                                                    <form method="post" action="{{route('owner.booking_cancel',$pending_booking->id)}}">
+                                                        @csrf
+                                                        @method('put')    
+                                                        <button type="submit" class="btn btn-outline-danger">
+                                                            <i class="fas fa-times"></i>
+                                                        </button>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </td>
@@ -173,12 +179,9 @@
                                 </tbody>
                             </table>
                         </div>
-
-
                     </div>
                         
-                    <div class="tab-pane fade py-4" id="nav-confirm" role="tabpanel" aria-labelledby="nav-confirm-tab">
-                            
+                    <div class="tab-pane fade py-4" id="nav-confirm" role="tabpanel" aria-labelledby="nav-confirm-tab">     
                         <div class="table-responsive">
                             <table class="table table-hover table-bordered display">
                                 <thead>
@@ -198,27 +201,39 @@
                                     @foreach ($confirmed_bookings as $confirmed_booking)
                                     <tr>
                                         <td> {{ $num++ }}. </td>
-                                        <td> {{ $confirmed_booking->booking_date }} </td>
+                                        <td>
+                                            <div class="text-dark">{{ date_format(date_create($confirmed_booking->booking_date),"d-M-Y") }}</div>
+                                            <div class="row">
+                                                <div class="text-success col-md-5"><small>{{ date_format(date_create($confirmed_booking->start_time),"h:i A") }}</small></div>
+                                                <div class="text-success col-md-5"><small>{{ date_format(date_create($confirmed_booking->end_time),"h:i A") }}</small></div>
+                                            </div> 
+                                        </td>
                                         <td> {{ $confirmed_booking->booking_no }} </td>
                                         <td> {{ $confirmed_booking->total_amount }} MMK</td>
                                         <th> 
-                                            @if ($confirmed_booking->status == 0)
-                                            <div>
-                                               <p class="text-success">Pending</p>
-                                            </div>
-                                            @else
+                                            @if ($confirmed_booking->status == 1)
                                                 <div>
                                                     <p class="text-success">Confirmed</p>
                                                 </div>
                                             @endif
                                         </th>
                                         <td>
-                                            <a href="{{ route('owner.booking_detail', $confirmed_booking->id) }}" class="btn btn-outline-info">
-                                                <i class="fas fa-info"></i>
-                                            </a>
-                                            <a href="#" class="btn btn-outline-danger">
-                                                <i class="fas fa-times"></i>
-                                            </a>
+                                            <div class="row offset-md-2">
+                                                <div class="mr-1">
+                                                    <a href="{{ route('owner.booking_detail', $confirmed_booking->id) }}" class="btn btn-outline-info">
+                                                        <i class="fas fa-info"></i>
+                                                    </a>
+                                                </div>
+                                                <div>
+                                                    <form method="post" action="{{route('owner.booking_cancel',$confirmed_booking->id)}}">
+                                                        @csrf
+                                                        @method('put')    
+                                                        <button type="submit" class="btn btn-outline-danger">
+                                                            <i class="fas fa-times"></i>
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            </div>
                                         </td>
 
                                     </tr>
@@ -226,7 +241,6 @@
                                 </tbody>
                             </table>
                         </div>
-
                     </div>
                         
                     <div class="tab-pane fade py-4" id="nav-cancel" role="tabpanel" aria-labelledby="nav-cancel-tab">
@@ -244,24 +258,38 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    
+                                    @php
+                                        $num = 1;
+                                    @endphp
+                                    @foreach ($canceled_bookings as $canceled_booking)
                                     <tr>
-                                        <td>  </td>
-                                        <td>  </td>
-                                        <td>  </td>
-                                        <td>  </td>
-                                        <th> </th>
+                                        <td> {{ $num++ }}. </td>
                                         <td>
-                                            <a href="#" class="btn btn-outline-info">
+                                            <div class="text-dark">{{ date_format(date_create($canceled_booking->booking_date),"d-M-Y") }}</div>
+                                            <div class="row">
+                                                <div class="text-success col-md-5"><small>{{ date_format(date_create($canceled_booking->start_time),"h:i A") }}</small></div>
+                                                <div class="text-success col-md-5"><small>{{ date_format(date_create($canceled_booking->end_time),"h:i A") }}</small></div>
+                                            </div> 
+                                        </td>
+                                        <td> {{ $canceled_booking->booking_no }} </td>
+                                        <td> {{ $canceled_booking->total_amount }} MMK</td>
+                                        <th> 
+                                            @if ($confirmed_booking->status == 1)
+                                            <div>
+                                                <p class="text-danger">Canceled</p>
+                                            </div>
+                                            @endif
+                                        </th>
+                                        <td>
+                                            <a href="{{ route('owner.booking_detail', $confirmed_booking->id) }}" class="btn btn-outline-info">
                                                 <i class="fas fa-info"></i>
                                             </a>
                                         </td>
-
                                     </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
-
                     </div>
                 </div>
             </div>    

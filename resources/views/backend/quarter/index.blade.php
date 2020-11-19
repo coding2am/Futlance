@@ -55,13 +55,13 @@
                                         @endphp
                                         @foreach ($quarters as $quarter)
                                             <tr>
-                                                <td>{{ $i++ }}</td>
+                                                <td>{{ $i++ }}.</td>
                                                 <td>{{ $quarter->name }}</td>
                                                 <td>{{ $quarter->city->name }}</td>
                                                 <td>
                                                     <div class="btn-group btn-group-sm" role="group" aria-label="...">
                                                         <a href="{{ route('quarter.edit', $quarter->id) }}"
-                                                            class="btn btn-sm btn-info mr-1">Edit</a>
+                                                            class="btn btn-sm btn-warning mr-1">Edit</a>
                                                         <form method="post"
                                                             action="{{ route('quarter.destroy', $quarter->id) }}"
                                                             class="d-inline-block"

@@ -49,7 +49,7 @@
         <div class="col-md-3 col-sm-6">
             <div class="profile-widget">
                 <div class="doc-img">
-                    <a href="#">
+                    <a href="{{ route('court_detail', $court->id) }}">
                         <img class="img-fluid courtImage" alt="User Image" src="{{ asset($court->photo) }}">
                     </a>
                     <a href="javascript:void(0)" class="fav-btn">
@@ -58,7 +58,7 @@
                 </div>
                 <div class="pro-content">
                     <h3 class="title">
-                        <a href="#">{{ $court->name }}</a> 
+                        <a href="{{ route('court_detail', $court->id) }}">{{ $court->name }}</a> 
                         <i class="fas fa-check-circle verified"></i>
                     </h3>
                     <div class="rating">
@@ -82,7 +82,7 @@
                     </ul>
                     <div class="row row-sm">
                         <div class="col-6">
-                            <a href="doctor-profile.html" class="btn view-btn">View</a>
+                            <a href="{{ route('court_detail', $court->id) }}" class="btn view-btn">View</a>
                         </div>
                         <div class="col-6">
                             <a href="@if(Auth::user()) {{route('court_booking', $court->id)}} @else {{route('user.signin')}}  @endif" class="btn book-btn">Book Now</a>
@@ -143,7 +143,7 @@
                 <div class="col-md-3 col-sm-6">
                     <div class="profile-widget">
                         <div class="doc-img">
-                            <a href="#">
+                            <a href="/court_detail/${ row.id }">
                                 <img class="img-fluid courtImage" alt="Court Image" src="${ row.photo }">
                             </a>
                             <a href="javascript:void(0)" class="fav-btn">
@@ -152,7 +152,7 @@
                         </div>
                         <div class="pro-content">
                             <h3 class="title">
-                                <a href="#">${ row.name }</a> 
+                                <a href="/court_detail/${ row.id }">${ row.name }</a> 
                                 <i class="fas fa-check-circle verified"></i>
                             </h3>
                             <div class="rating">

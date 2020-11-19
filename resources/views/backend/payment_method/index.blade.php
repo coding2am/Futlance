@@ -57,7 +57,7 @@
                                         <td>
                                             <div class="btn-group btn-group-sm" role="group" aria-label="...">
                                                 <a href="{{ route('payment_method.edit', $paymentMethod->id) }}"
-                                                    class="btn btn-sm btn-info mr-1">Edit</a>
+                                                    class="btn btn-sm btn-warning mr-1">Edit</a>
                                                 <form method="post"
                                                     action="{{ route('payment_method.destroy', $paymentMethod->id) }}"
                                                     class="d-inline-block"

@@ -52,12 +52,12 @@
                                         @endphp
                                         @foreach ($cities as $city)
                                             <tr>
-                                                <td>{{ $i++ }}</td>
+                                                <td>{{ $i++ }}.</td>
                                                 <td>{{ $city->name }}</td>
                                                 <td>
                                                     <div class="btn-group btn-group-sm" role="group" aria-label="...">
                                                         <a href="{{ route('city.edit', $city->id) }}"
-                                                            class="btn btn-sm btn-info mr-1">Edit</a>
+                                                            class="btn btn-sm btn-warning mr-1">Edit</a>
                                                         <form method="post" action="{{ route('city.destroy', $city->id) }}"
                                                             class="d-inline-block"
                                                             onsubmit="return confirm('Are you Sure to Delete?')">

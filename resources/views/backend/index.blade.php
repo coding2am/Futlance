@@ -90,27 +90,6 @@
                     </div>
                 </div>
             </div>
-            {{-- <div class="col-xl-3 col-sm-6 col-12">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="dash-widget-header">
-                            <span class="dash-widget-icon text-warning border-warning">
-                                <i class="fe fe-folder"></i>
-                            </span>
-                            <div class="dash-count">
-                                <h3>$62523</h3>
-                            </div>
-                        </div>
-                        <div class="dash-widget-info">
-										
-                            <h6 class="text-muted">Revenue</h6>
-                            <div class="progress progress-sm">
-                                <div class="progress-bar bg-warning w-50"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> --}}
         </div>
         <div class="row">
             <div class="col-md-12 col-lg-6">
@@ -148,7 +127,7 @@
                 <!-- Recent Orders -->
                 <div class="card card-table flex-fill">
                     <div class="card-header">
-                        <h4 class="card-title text-info">Some User List</h4>
+                        <h4 class="card-title text-info">Recent Users</h4>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -194,7 +173,7 @@
                 <!-- Feed Activity -->
                 <div class="card  card-table flex-fill">
                     <div class="card-header">
-                        <h4 class="card-title text-info">Some Courts List</h4>
+                        <h4 class="card-title text-info">Recent Courts</h4>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">

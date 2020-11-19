@@ -115,7 +115,7 @@
                     </div>
                 </form>
             </fieldset>
-    </div>
+        </div>
         {{-- edit profile  --}}
     </div>
 </div>

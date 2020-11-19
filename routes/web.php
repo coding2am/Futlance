@@ -10,13 +10,16 @@ Route::get('/booking_history', 'FrontendController@bookingHistory')->name('booki
 Route::get('/courts', 'FrontendController@court')->name('court_page');
 Route::get('/court_detail/{id}', 'FrontendController@courtDetail')->name('court_detail');
 Route::get('/blog', 'FrontendController@blog')->name('blog');
+Route::get('/about', 'FrontendController@about')->name('about');
 
 //Owner Route
 Route::group(['middleware'=>['owner']],function(){
     Route::get('/owner_dashboard', 'OwnerController@index')->name('owner_dashboard');
+    Route::get('/owner_profile', 'OwnerController@profile')->name('owner_profile');
     Route::get('/owner_booking', 'OwnerController@booking')->name('owner.booking');
     Route::get('/owner_booking_detail/{id}', 'OwnerController@bookingDetail')->name('owner.booking_detail');
     Route::put('/owner_booking_confirm/{id}', 'OwnerController@bookingConfirm')->name('owner.booking_confirm');
+    Route::put('/owner_booking_cancel/{id}', 'OwnerController@bookingCancel')->name('owner.booking_cancel');
 
     Route::get('/owner_court', 'OwnerController@court')->name('owner.court');
     Route::get('/owner_court_edit/{id}', 'OwnerController@courtEdit')->name('owner.court.edit');

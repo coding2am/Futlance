@@ -54,6 +54,12 @@
                                         <span>Dashboard</span>
                                     </a>
                                 </li>
+                                <li class="{{ Request::is('owner_profile*') ? 'active' : '' }}">
+                                    <a href="{{route('owner_profile')}}">
+                                        <i class="fas fa-user"></i>
+                                        <span>Profile</span>
+                                    </a>
+                                </li>
                                 <li class="{{ Request::is('owner_booking*') ? 'active' : '' }}">
                                 <a href="{{ route('owner.booking') }}">
                                         <i class="fas fa-calendar-check"></i>
@@ -118,7 +124,7 @@
                                             <div class="dash-widget-info">
                                                 <h6>You have</h6>
                                             <h3 class="text-info">{{ count($ownBookings) }}</h3>
-                                                <p class="text-muted">total booking</p>
+                                                <p class="text-muted">total bookings</p>
                                             </div>
                                         </div>
                                     </div>
@@ -180,29 +186,33 @@
                                                 <tbody>
                                                     @foreach ($ownBookings as $booking)
                                                         <tr>
-                                                            <td>{{ $num++ }}</td>
+                                                            <td>{{ $num++ }}.</td>
                                                             <td>{{ $booking->booking_no }}</td>
                                                             <td>
                                                                 {{-- <td>{{ $booking->booking_date }} <span class="text-primary d-block">{{ $booking->start_time }} - {{ $booking->end_time }}</span></td> --}}
-                                                                <div class="text-dark">{{ $booking->booking_date }}</div>
+                                                                <div class="text-dark">{{ date_format(date_create($booking->booking_date),"d-M-Y") }}</div>
                                                                 <div class="row">
-                                                                    <div class="text-success col-md-4"><small>{{ $booking->start_time }}</small></div>
-                                                                    <div class="text-success col-md-4"><small>{{ $booking->end_time }}</small></div>
+                                                                    <div class="text-success col-md-4"><small>{{ date_format(date_create($booking->start_time),"h:i A") }}</small></div>
+                                                                    <div class="text-success col-md-4"><small>{{ date_format(date_create($booking->end_time),"h:i A") }}</small></div>
                                                                 </div>
                                                             </td>
                                                             <td>{{ $booking->user->name }}</td>
                                                             <td>{{ $booking->court->name }}</td>
-                                                            <td>
+                                                            <th>
                                                                 @if ($booking->status == 0)
                                                                     <div>
-                                                                       <p class="text-success">Pending</p>
+                                                                       <p class="text-warning">Pending</p>
                                                                     </div>
-                                                                @else
+                                                                @elseif ($booking->status == 1)
                                                                     <div>
                                                                         <p class="text-success">Confirmed</p>
                                                                     </div>
+                                                                @elseif ($booking->status == 2)
+                                                                    <div>
+                                                                        <p class="text-danger">Cancled</p>
+                                                                    </div>
                                                                 @endif
-                                                            <td>
+                                                            <th>
                                                         </tr>
                                                     @endforeach
                                                 </tbody>

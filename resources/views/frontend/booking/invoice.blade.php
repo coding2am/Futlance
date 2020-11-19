@@ -102,8 +102,8 @@
                                             <tr>
                                                 <td>{{ $booking->court->name }}</td>
                                                 <td class="text-center">
-                                                    <span >{{ date_format(date_create($booking->start_time),"H:i A") }} </span>
-                                                    <span class="font-weight-bold text-dark" >to</span> <span >{{ date_format(date_create($booking->end_time),"H:i A") }}</span>
+                                                    <span >{{ date_format(date_create($booking->start_time),"h:i A") }} </span>
+                                                    <span class="font-weight-bold text-dark" >to</span> <span >{{ date_format(date_create($booking->end_time),"h:i A") }}</span>
                                                 </td>
                                                 <td class="text-center">35%</td>
                                                 <td class="text-right">{{ $booking->total_amount }} MMK</td>
