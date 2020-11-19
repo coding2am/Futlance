@@ -103,7 +103,7 @@
                                     <a class="dropdown-item" href="{{ url('/admin') }}">Admin Dashboard</a>
                                 @elseif(Auth::user()->getRoleNames()[0] == 'owner')
                                     <a class="dropdown-item" href="{{ route('owner_dashboard') }}">Owner Dashboard</a>
-                                @elseif(Auth::user()->getRoleNames()[0] == 'customer')
+                                @elseif(Auth::user()->getRoleNames()[0] == 'customer' OR 'member')
                                     <a class="dropdown-item" href="{{ route('profile') }}">Profile</a>
                                     <a class="dropdown-item" href="{{ route('booking_history') }}">Booking History</a>
                                 @endif
